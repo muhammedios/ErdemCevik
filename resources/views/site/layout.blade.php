@@ -1,0 +1,69 @@
+@php
+$tr = $locale === 'tr';
+$t = fn($a,$b) => $tr ? $a : $b;
+$labels = ['home'=>$t('Ana sayfa','Home'),'about'=>$t('Hakkımızda','About us'),'treatment'=>$t('Tedavilerimiz','Treatments'),'doctor'=>$t('Doktorlarımız','Our dentists'),'post'=>'Blog','faq'=>$t('Sık sorulan sorular','FAQs'),'contact'=>$t('İletişim','Contact')];
+$title = $page?->translated('seo_title') ?: ($kind === 'home' ? $t('Doğal gülüşler, kişisel bir yaklaşım','Natural smiles, a personal approach') : ($page?->translated('title') ?: $labels[$kind]));
+$description = $page?->translated('seo_description') ?: ($page?->translated('excerpt') ?: $t('Erdem Çevik kliniği. Tedavilerimiz, hekimimiz ve kliniğimiz hakkında bilgi edinin.','Erdem Çevik clinic. Explore our treatments, dentist and clinic.'));
+$wa = $settings->whatsappUrl();
+@endphp
+<!doctype html>
+<html lang="{{ $locale }}">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ str_replace("\n", ' ', $title) }} — {{ $settings->name }}</title>
+<meta name="description" content="{{ $description }}"><meta name="theme-color" content="#173d35">
+<link rel="canonical" href="{{ url()->current() }}">
+<link rel="alternate" hreflang="{{ $locale }}" href="{{ url()->current() }}"><link rel="alternate" hreflang="{{ $tr ? 'en' : 'tr' }}" href="{{ $alternateUrl }}">
+<meta property="og:title" content="{{ str_replace("\n", ' ', $title) }} — {{ $settings->name }}"><meta property="og:description" content="{{ $description }}"><meta property="og:type" content="{{ $kind === 'post' && $slug ? 'article' : 'website' }}"><meta property="og:url" content="{{ url()->current() }}">
+@if($page?->imageUrl())<meta property="og:image" content="{{ $page->imageUrl() }}">@endif
+<link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/site.css') }}?v={{ filemtime(public_path('css/site.css')) }}">
+<link rel="stylesheet" href="{{ asset('css/refinements.css') }}?v={{ filemtime(public_path('css/refinements.css')) }}">
+<link rel="stylesheet" href="{{ asset('css/responsive.css') }}?v={{ filemtime(public_path('css/responsive.css')) }}">
+<script src="{{ asset('js/site.js') }}?v={{ filemtime(public_path('js/site.js')) }}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">{{ $t('İçeriğe geç','Skip to content') }}</a>
+<div class="topline"><div class="wrap"><span>{{ $copy('top_text') }}</span><a href="{{ $url('contact') }}">{{ $copy('top_link') }} <span aria-hidden="true">↗</span></a></div></div>
+<header class="header"><div class="wrap nav-wrap">
+<a class="brand" href="{{ $url('home') }}" aria-label="{{ $settings->name }} {{ $t('ana sayfa','home') }}">
+@if($settings->logo)<img class="custom-logo" src="{{ asset('storage/'.$settings->logo) }}" alt="{{ $settings->name }}">
+@else<span class="brand-mark" aria-hidden="true">@include('site.tooth')</span><span class="brand-words">{{ $settings->name }}<small>{{ $copy('brand_subtitle') }}</small></span>@endif
+</a>
+<nav class="desktop-nav" aria-label="{{ $t('Ana menü','Main navigation') }}">@foreach(['home','about','treatment','doctor','post','contact'] as $key)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $labels[$key] }}</a>@endforeach</nav>
+<div class="nav-actions"><div class="lang"><span aria-hidden="true">◎</span><a href="{{ $tr ? url()->current() : $alternateUrl }}" lang="tr" class="{{ $tr ? 'selected' : '' }}" @if($tr) aria-current="true" @endif>TR</a><span class="lang-divider">/</span><a href="{{ $tr ? $alternateUrl : url()->current() }}" lang="en" class="{{ !$tr ? 'selected' : '' }}" @if(!$tr) aria-current="true" @endif>EN</a></div>
+<a class="button small nav-appointment" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('nav_appointment') }} <span>↗</span></a>
+<button class="menu-toggle" aria-label="{{ $t('Menüyü aç','Open menu') }}" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+</div><nav id="mobile-nav" class="mobile-nav" hidden aria-label="{{ $t('Mobil menü','Mobile navigation') }}">@foreach($labels as $key=>$label)<a href="{{ $url($key) }}">{{ $label }}</a>@endforeach</nav></header>
+<main id="main">@yield('content')</main>
+<section class="contact-band"><div class="wrap contact-band-inner"><div><span class="eyebrow light">{{ $copy('cta_label') }}</span><h2>{{ $copy('cta_title') }}</h2><p>{{ $copy('cta_body') }}</p></div><a class="button cream" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('cta_button') }} <span>↗</span></a></div></section>
+<footer>
+    <div class="wrap footer-main">
+        <div class="footer-brand">
+            <a class="brand" href="{{ $url('home') }}">@if($settings->logo)<img class="custom-logo" src="{{ asset('storage/'.$settings->logo) }}" alt="{{ $settings->name }}">@else<span class="brand-mark" aria-hidden="true">@include('site.tooth')</span><span class="brand-words">{{ $settings->name }}<small>{{ $copy('brand_subtitle') }}</small></span>@endif</a>
+            <p>{{ $copy('footer_tagline') }}</p>
+            @if($settings->instagram || $wa || $settings->facebook)
+            <nav class="footer-social" aria-label="{{ $t('Sosyal medya','Social media') }}">
+                @if($settings->instagram)<a href="{{ $settings->instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">@include('site.instagram')</a>@endif
+                @if($wa)<a href="{{ $wa }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">@include('site.whatsapp')</a>@endif
+                @if($settings->facebook)<a href="{{ $settings->facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">@include('site.facebook')</a>@endif
+            </nav>
+            @endif
+        </div>
+        <nav class="footer-links" aria-label="{{ $t('Alt menü','Footer navigation') }}">
+            @foreach(['about','doctor','treatment','post','faq','contact'] as $key)
+                <a href="{{ $url($key) }}">{{ $labels[$key] }}</a>
+            @endforeach
+        </nav>
+        <div class="footer-contact">
+            @if($settings->phone)<a href="tel:{{ preg_replace('/[^+0-9]/','',$settings->phone) }}">{{ $settings->phone }}</a>@endif
+            @if($settings->email)<a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a>@endif
+            <p>{{ $settings->translated('address') }}</p>
+        </div>
+    </div>
+    <div class="wrap footer-bottom"><span>© {{ now('Europe/Istanbul')->year }} {{ $settings->name }}. {{ $t('Tüm hakları saklıdır.','All rights reserved.') }}</span>@if($settings->show_preview_notice)<span>{{ $t('Önizleme · Örnek içerikler ve stok görseller kullanılmıştır.','Preview · Sample content and stock photography.') }}</span>@endif</div>
+</footer>
+@if($wa)<a class="floating-wa" href="{{ $wa }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">@include('site.whatsapp')</a>@endif
+</body></html>

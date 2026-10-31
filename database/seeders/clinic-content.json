@@ -1,0 +1,325 @@
+[
+  {
+    "kind": "page",
+    "slug": "home",
+    "title": {
+      "tr": "İyi bir gülüş,\niyi hissettirir.",
+      "en": "A healthy smile.\nA good feeling."
+    },
+    "excerpt": {
+      "tr": "Gülüşünüzün doğallığını önemsiyor, ağız ve diş sağlığı yolculuğunuzda size eşlik ediyoruz.",
+      "en": "We value the individuality of your smile and are here to accompany you on your oral health journey."
+    },
+    "body": {
+      "tr": "",
+      "en": ""
+    },
+    "image": "images/clinic.jpg",
+    "published": true,
+    "sort_order": 0
+  },
+  {
+    "kind": "page",
+    "slug": "about",
+    "title": {
+      "tr": "Önce sizi dinliyoruz.",
+      "en": "It starts with listening."
+    },
+    "excerpt": {
+      "tr": "Her gülüşün bir hikâyesi var. Bizim için ilk adım, sizinkini anlamak.",
+      "en": "Every smile has a story. Our first step is to understand yours."
+    },
+    "body": {
+      "tr": "<p>Erdem Çevik kliniğine hoş geldiniz. Ağız ve diş sağlığınızı konuşabileceğiniz, sorularınızı rahatça sorabileceğiniz bir alan tasarlıyoruz.</p><p>İhtiyaçlarınızı ve beklentilerinizi dinlemek, size süreci anlaşılır biçimde aktarmak ve seçenekleri birlikte değerlendirmek yaklaşımımızın temelini oluşturuyor.</p><p>Kliniğimizin hikâyesi, ekibimiz ve çalışma yaklaşımımızla ilgili ayrıntılar yakında burada olacak.</p>",
+      "en": "<p>Welcome to the Erdem Çevik clinic. We are creating a space where you can discuss your oral health and comfortably ask questions.</p><p>Our approach begins with understanding your needs, explaining the process clearly and discussing the available options together.</p><p>More details about our clinic, team and approach will be shared here soon.</p>"
+    },
+    "image": "images/care.jpg",
+    "published": true,
+    "sort_order": 1
+  },
+  {
+    "kind": "page",
+    "slug": "contact",
+    "title": {
+      "tr": "Tanışalım.",
+      "en": "Let’s connect."
+    },
+    "excerpt": {
+      "tr": "Sorularınız ve randevu talepleriniz için bize ulaşın.",
+      "en": "Get in touch with your questions or appointment enquiries."
+    },
+    "body": {
+      "tr": "",
+      "en": ""
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 2
+  },
+  {
+    "kind": "treatment",
+    "slug": "estetik-dis-hekimligi",
+    "title": {
+      "tr": "Estetik diş hekimliği",
+      "en": "Aesthetic dentistry"
+    },
+    "excerpt": {
+      "tr": "Gülüşünüzün doğallığını odağına alan kişisel bir yaklaşım.",
+      "en": "An individual approach focused on the natural character of your smile."
+    },
+    "body": {
+      "tr": "<p>Gülüşünüzün doğallığını odağına alan kişisel bir yaklaşım.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>An individual approach focused on the natural character of your smile.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 3
+  },
+  {
+    "kind": "treatment",
+    "slug": "implant",
+    "title": {
+      "tr": "İmplant tedavisi",
+      "en": "Dental implants"
+    },
+    "excerpt": {
+      "tr": "Eksik dişlere yönelik seçenekleri birlikte değerlendirelim.",
+      "en": "Explore the options available for missing teeth."
+    },
+    "body": {
+      "tr": "<p>Eksik dişlere yönelik seçenekleri birlikte değerlendirelim.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>Explore the options available for missing teeth.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 4
+  },
+  {
+    "kind": "treatment",
+    "slug": "ortodonti",
+    "title": {
+      "tr": "Ortodonti",
+      "en": "Orthodontics"
+    },
+    "excerpt": {
+      "tr": "Diş dizilimi ve kapanışla ilgili değerlendirme ve planlama.",
+      "en": "Assessment and planning for tooth alignment and bite."
+    },
+    "body": {
+      "tr": "<p>Diş dizilimi ve kapanışla ilgili değerlendirme ve planlama.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>Assessment and planning for tooth alignment and bite.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 5
+  },
+  {
+    "kind": "treatment",
+    "slug": "dis-beyazlatma",
+    "title": {
+      "tr": "Diş beyazlatma",
+      "en": "Teeth whitening"
+    },
+    "excerpt": {
+      "tr": "Diş renginize ilişkin beklentilerinizi konuşalım.",
+      "en": "Let’s discuss your expectations about the shade of your teeth."
+    },
+    "body": {
+      "tr": "<p>Diş renginize ilişkin beklentilerinizi konuşalım.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>Let’s discuss your expectations about the shade of your teeth.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 6
+  },
+  {
+    "kind": "treatment",
+    "slug": "restoratif-tedaviler",
+    "title": {
+      "tr": "Restoratif tedaviler",
+      "en": "Restorative dentistry"
+    },
+    "excerpt": {
+      "tr": "Dişlerin form ve işlevine odaklanan tedavi seçenekleri.",
+      "en": "Treatment options focused on the form and function of your teeth."
+    },
+    "body": {
+      "tr": "<p>Dişlerin form ve işlevine odaklanan tedavi seçenekleri.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>Treatment options focused on the form and function of your teeth.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 7
+  },
+  {
+    "kind": "treatment",
+    "slug": "dis-eti-sagligi",
+    "title": {
+      "tr": "Diş eti sağlığı",
+      "en": "Gum health"
+    },
+    "excerpt": {
+      "tr": "Ağız sağlığına bir bütün olarak bakıyoruz.",
+      "en": "Taking a comprehensive view of your oral health."
+    },
+    "body": {
+      "tr": "<p>Ağız sağlığına bir bütün olarak bakıyoruz.</p><p>Tedavi ihtiyacı, uygun yöntem ve süreç; diş hekiminin kişisel muayene ve değerlendirmesiyle belirlenir. Size özel seçenekleri konuşmak için kliniğimizle iletişime geçebilirsiniz.</p>",
+      "en": "<p>Taking a comprehensive view of your oral health.</p><p>Treatment needs, suitable methods and the process are determined through an individual examination and assessment by a dentist. Contact the clinic to discuss the options for you.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 8
+  },
+  {
+    "kind": "doctor",
+    "slug": "erdem-cevik",
+    "title": {
+      "tr": "Erdem Çevik",
+      "en": "Erdem Çevik"
+    },
+    "excerpt": {
+      "tr": "Diş Hekimi",
+      "en": "Dentist"
+    },
+    "body": {
+      "tr": "<p>Hekimimizin özgeçmişi ve fotoğrafı yakında eklenecek.</p>",
+      "en": "<p>Our dentist’s biography and photograph will be added soon.</p>"
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 9
+  },
+  {
+    "kind": "post",
+    "slug": "ilk-ziyaret",
+    "title": {
+      "tr": "İlk ziyaretinizden önce",
+      "en": "Before your first visit"
+    },
+    "excerpt": {
+      "tr": "Randevu süreciyle ilgili merak ettikleriniz.",
+      "en": "What to expect from the appointment process."
+    },
+    "body": {
+      "tr": "<p>Randevu süreciyle ilgili merak ettikleriniz.</p><p>Kliniğimiz ve randevu süreciyle ilgili sorularınızı iletişim sayfamız üzerinden bize iletebilirsiniz. Bu bölümdeki içerikler genel tanıtım amaçlıdır; kişisel değerlendirme için diş hekiminizle görüşebilirsiniz.</p>",
+      "en": "<p>What to expect from the appointment process.</p><p>For questions about our clinic and the appointment process, please visit our contact page. This section provides a general introduction; speak with your dentist for an individual assessment.</p>"
+    },
+    "image": "images/care.jpg",
+    "published": true,
+    "sort_order": 10
+  },
+  {
+    "kind": "post",
+    "slug": "gulusun-hikayesi",
+    "title": {
+      "tr": "Her gülüşün bir hikâyesi var",
+      "en": "Every smile has a story"
+    },
+    "excerpt": {
+      "tr": "Beklentilerinizi konuşmakla başlayan bir yolculuk.",
+      "en": "A journey that starts with understanding your expectations."
+    },
+    "body": {
+      "tr": "<p>Beklentilerinizi konuşmakla başlayan bir yolculuk.</p><p>Kliniğimiz ve randevu süreciyle ilgili sorularınızı iletişim sayfamız üzerinden bize iletebilirsiniz. Bu bölümdeki içerikler genel tanıtım amaçlıdır; kişisel değerlendirme için diş hekiminizle görüşebilirsiniz.</p>",
+      "en": "<p>A journey that starts with understanding your expectations.</p><p>For questions about our clinic and the appointment process, please visit our contact page. This section provides a general introduction; speak with your dentist for an individual assessment.</p>"
+    },
+    "image": "images/dental.jpg",
+    "published": true,
+    "sort_order": 11
+  },
+  {
+    "kind": "post",
+    "slug": "klinigimizi-taniyin",
+    "title": {
+      "tr": "Kliniğimizi tanıyın",
+      "en": "Get to know our clinic"
+    },
+    "excerpt": {
+      "tr": "Tanışmak için küçük bir başlangıç.",
+      "en": "A little introduction to our space."
+    },
+    "body": {
+      "tr": "<p>Tanışmak için küçük bir başlangıç.</p><p>Kliniğimiz ve randevu süreciyle ilgili sorularınızı iletişim sayfamız üzerinden bize iletebilirsiniz. Bu bölümdeki içerikler genel tanıtım amaçlıdır; kişisel değerlendirme için diş hekiminizle görüşebilirsiniz.</p>",
+      "en": "<p>A little introduction to our space.</p><p>For questions about our clinic and the appointment process, please visit our contact page. This section provides a general introduction; speak with your dentist for an individual assessment.</p>"
+    },
+    "image": "images/clinic.jpg",
+    "published": true,
+    "sort_order": 12
+  },
+  {
+    "kind": "faq",
+    "slug": "randevu",
+    "title": {
+      "tr": "Nasıl randevu alabilirim?",
+      "en": "How can I book an appointment?"
+    },
+    "excerpt": {
+      "tr": "",
+      "en": ""
+    },
+    "body": {
+      "tr": "WhatsApp bağlantımız üzerinden bize ulaşabilirsiniz. Ekibimiz uygun gün ve saat için sizinle iletişime geçer.",
+      "en": "Contact us through our WhatsApp link. Our team will help arrange a suitable date and time."
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 13
+  },
+  {
+    "kind": "faq",
+    "slug": "ilk-muayene",
+    "title": {
+      "tr": "İlk görüşmede beni neler bekliyor?",
+      "en": "What happens at my first visit?"
+    },
+    "excerpt": {
+      "tr": "",
+      "en": ""
+    },
+    "body": {
+      "tr": "İlk görüşmede beklentileriniz ve ağız sağlığınıza ilişkin sorularınız değerlendirilir. Sürecin ayrıntılarını randevu öncesinde ekibimizden öğrenebilirsiniz.",
+      "en": "Your expectations and oral health questions are discussed at your first visit. Ask our team about the details before your appointment."
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 14
+  },
+  {
+    "kind": "faq",
+    "slug": "tedavi-plani",
+    "title": {
+      "tr": "Tedavi planı nasıl hazırlanır?",
+      "en": "How is a treatment plan prepared?"
+    },
+    "excerpt": {
+      "tr": "",
+      "en": ""
+    },
+    "body": {
+      "tr": "Tedavi planı, hekim muayenesi ve kişisel ihtiyaçların değerlendirilmesinin ardından sizinle görüşülerek hazırlanır.",
+      "en": "A treatment plan is discussed with you after a dental examination and assessment of your individual needs."
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 15
+  },
+  {
+    "kind": "faq",
+    "slug": "dil",
+    "title": {
+      "tr": "İngilizce bilgi alabilir miyim?",
+      "en": "Can I browse the website in English?"
+    },
+    "excerpt": {
+      "tr": "",
+      "en": ""
+    },
+    "body": {
+      "tr": "Web sitemizi sağ üstteki dil seçeneğinden İngilizce görüntüleyebilirsiniz.",
+      "en": "You can switch between Turkish and English using the language selector at the top of the page."
+    },
+    "image": null,
+    "published": true,
+    "sort_order": 16
+  }
+]

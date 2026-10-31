@@ -1,0 +1,512 @@
+/* Shared responsive rules for every public page, in both languages. */
+:root{--page-gutter:clamp(16px,3.5vw,50px)}
+.wrap{width:min(1280px,calc(100% - var(--page-gutter)*2))}
+main,section,article,aside,nav,footer,.wrap{min-width:0}
+.hero-grid,.about-grid,.doctor-preview,.faq-grid,.contact-grid,.article-grid,.footer-main{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.hero-grid>*,.section-head>*,.treatment-grid>*,.blog-grid>*,.doctors-grid>*,.about-grid>*,.doctor-preview>*,.faq-grid>*,.contact-grid>*,.article-grid>*,.footer-main>*,.nav-actions,.contact-band-inner>*{min-width:0}
+.footer-main{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr)}
+h1,h2,h3,p,.breadcrumb,.text-link,.button,.footer-contact a{overflow-wrap:anywhere}
+.button{max-width:100%;min-height:44px}
+.text-link{max-width:100%;min-height:44px}
+.hero-buttons{flex-wrap:wrap;gap:14px 22px}
+.hero h1{font-size:clamp(52px,5.7vw,84px)}
+.headline-accent{width:auto}
+.hero-copy>p{font-size:15px}
+.clinic-board{width:100%;max-width:510px;transform:none;padding:14px;box-shadow:10px 10px 0 var(--sand)}
+.board-main-photo{height:auto;aspect-ratio:4/3}
+.board-main-photo img{height:100%;width:100%;object-fit:cover}
+.board-heading{font-size:9px;line-height:1.6;gap:15px;letter-spacing:1.5px}
+.board-main-photo>span{font-size:9px;line-height:1.6;max-width:calc(100% - 80px)}
+.board-main-photo>a{width:44px;height:44px;bottom:12px;right:12px}
+.board-caption{display:flex;align-items:center;gap:12px;padding:17px 3px 3px}
+.board-caption-icon{width:36px;height:36px;flex-shrink:0;color:var(--gold)}
+.board-caption-icon svg{width:100%;height:100%}
+.board-caption strong{display:block;font-size:13px;font-weight:500;line-height:1.6}
+.board-caption div>span{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
+.board-caption>span:last-child{color:var(--gold);font-size:32px;margin-left:auto;flex-shrink:0}
+.about-photo{max-width:450px;width:calc(100% - 20px)}
+.about-photo>img{height:auto;aspect-ratio:5/4;object-fit:cover}
+.post-image,.post-card:first-child .post-image{height:auto;aspect-ratio:4/3}
+.post-card h3{font-size:clamp(25px,2.2vw,30px);line-height:1.15}
+.post-card p{font-size:13px;line-height:1.75}
+.post-meta{flex-wrap:wrap}
+.article-image{height:auto;width:100%;max-height:420px;aspect-ratio:3/2;object-fit:cover}
+.doctor-placeholder{height:auto;min-height:0;aspect-ratio:4/5;max-height:420px}
+.doctor-placeholder>img{min-height:0;flex:1;object-fit:cover}
+.doctor-feature>div:not(.doctor-avatar){min-width:0}
+.doctor-feature h3{font-size:clamp(25px,2.6vw,33px);overflow-wrap:anywhere}
+.doctor-avatar{width:105px;height:130px}
+.treatment-card p{font-size:13px;line-height:1.75}
+.card-bottom{font-size:11px;gap:10px}
+.card-bottom>span{flex-shrink:0}
+.section-intro p,.about-copy>p,.article-aside p,.faq-grid>div>p{font-size:14px}
+.faq-item summary{font-size:14px}
+.faq-answer{font-size:14px;overflow-wrap:anywhere}
+.article-grid{grid-template-columns:minmax(0,1.8fr) minmax(250px,1fr)}
+.prose :is(img,video,iframe){max-width:100%;height:auto}
+.prose pre{overflow-x:auto;max-width:100%}
+.prose table{display:block;max-width:100%;overflow-x:auto}
+.prose :is(p,li,a){overflow-wrap:anywhere}
+.prose ul,.prose ol{padding-left:24px}
+.contact-details{grid-template-columns:repeat(2,minmax(0,1fr))}
+.contact-details a,.contact-details p{overflow-wrap:anywhere}
+.contact-band-inner{flex-wrap:wrap}
+.contact-band .button{white-space:normal;flex-shrink:0}
+.footer-contact>p,.footer-main>div>a:not(.brand){font-size:12px;line-height:1.7}
+.brand-words{overflow-wrap:anywhere}
+.custom-logo{max-width:100%;height:auto}
+.mobile-nav{max-height:calc(100dvh - 100px);overflow-y:auto;overscroll-behavior:contain}
+.menu-toggle{width:44px;height:44px;display:none;flex-shrink:0}
+.menu-toggle span{margin:7px auto}
+.lang a{display:inline-flex;align-items:center;justify-content:center;min-width:26px;min-height:44px}
+.pagination{flex-wrap:wrap}
+@media(max-width:1100px){
+ .desktop-nav{display:none}
+ .menu-toggle{display:block}
+ .nav-appointment{display:inline-flex!important}
+ .nav-wrap{gap:20px}
+ .nav-actions{gap:16px}
+ .hero-grid{gap:35px}
+ .treatments>.wrap{grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:35px}
+ .treatments .treatment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .discovery-dock>a{padding:23px 18px;gap:12px}
+ .discovery-dock strong{font-size:23px}
+ .discovery-dock small{line-height:1.6}
+ .about-grid,.doctor-preview,.faq-grid{gap:40px}
+ .doctor-feature{gap:16px;padding:25px 20px}
+ .doctor-avatar{width:85px;height:110px}
+ .footer-main{grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr))}
+ .footer-contact{grid-column:1/-1;display:flex;gap:25px;flex-wrap:wrap;align-items:baseline;border-top:1px solid var(--line);padding-top:20px}
+}
+@media(min-width:1101px){.mobile-nav{display:none!important}}
+@media(max-width:900px){
+ .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+ .hero h1{font-size:clamp(44px,6.5vw,60px);letter-spacing:-1.6px}
+ .hero-copy .eyebrow{line-height:1.8}
+ .clinic-board{max-width:460px;padding:12px;box-shadow:7px 7px 0 var(--sand)}
+ .board-caption{padding-top:13px;gap:8px}
+ .board-caption strong{font-size:12px}
+ .board-caption div>span{font-size:10px}
+ .board-caption>span:last-child{font-size:26px}
+ .board-caption-icon{width:30px;height:30px}
+ .board-heading{font-size:7px;letter-spacing:1.2px}
+ .treatments>.wrap{display:block}
+ .treatments .section-head{position:static;display:flex;gap:30px}
+ .treatment-grid,.treatments .treatment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .treatments .section-intro{max-width:300px}
+ .treatment-card p{font-size:13px}
+ .about-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+ .about-photo{width:calc(100% - 16px)}
+ .photo-label{left:8px;right:-8px;letter-spacing:1px}
+ .approach-details{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .doctor-preview{grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:25px}
+ .doctor-feature{gap:14px;padding:27px 18px}
+ .doctor-avatar{width:75px;height:100px}
+ .doctor-feature h3{font-size:27px}
+ .doctor-feature .round-arrow{width:28px;height:28px}
+ .blog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+ .article-grid{grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:30px}
+ .article-aside{padding:24px;top:120px}
+ .article-aside h3{font-size:31px}
+ .contact-grid{gap:30px}
+ .contact-details{grid-template-columns:minmax(0,1fr)}
+ .section-head h2,.about-copy h2,.faq-grid>div:first-child h2{font-size:48px}
+}
+@media(max-width:767px){
+ .nav-wrap{height:84px}
+ .hero-grid{grid-template-columns:minmax(0,1fr);gap:32px;padding-top:34px;padding-bottom:64px}
+ .hero-copy{padding:0}
+ .hero h1{font-size:clamp(48px,9.5vw,68px);max-width:600px}
+ .hero-copy>p{max-width:520px}
+ .hero-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr));max-width:520px}
+ .hero-shortcuts>a{font-size:11px;align-items:flex-start}
+ .hero-shortcuts>a>span:last-child{display:none}
+ .clinic-board{max-width:540px;width:100%;padding:13px}
+ .board-main-photo{aspect-ratio:3/2}
+ .board-heading{font-size:8px}
+ .board-caption strong{font-size:13px}
+ .board-caption div>span{font-size:11px}
+ .board-caption-icon{height:35px;width:35px}
+ .discovery-dock{grid-template-columns:minmax(0,1fr);margin-top:-25px}
+ .discovery-dock>a{padding:20px 24px;gap:18px}
+ .discovery-dock>a+a:before{top:0;bottom:auto;left:24px;right:24px;width:auto;height:1px}
+ .discovery-dock strong{font-size:25px}
+ .discovery-dock small{font-size:8px}
+ .dock-number{font-size:34px;min-width:35px}
+ .dock-icon{width:35px;height:35px}
+ .dock-arrow{font-size:23px}
+ .treatments .section-head{display:block}
+ .treatments .section-intro{max-width:520px;margin-top:20px}
+ .about-grid,.doctor-preview,.faq-grid,.contact-grid,.article-grid{grid-template-columns:minmax(0,1fr);gap:35px}
+ .about-photo{max-width:500px;width:calc(100% - 24px);margin:10px auto}
+ .about-photo>img{aspect-ratio:3/2}
+ .photo-label{left:20px;right:-10px;bottom:20px;padding:17px;font-size:9px}
+ .about-copy>p,.about-copy .lead{max-width:580px}
+ .approach-details p{font-size:12px}
+ .doctor-feature{max-width:560px;width:100%;padding:30px;gap:24px}
+ .doctor-avatar{height:140px;width:110px}
+ .doctor-feature h3{font-size:32px}
+ .doctor-feature .round-arrow{height:35px;width:35px}
+ .faq-grid>div:first-child:after{display:none}
+ .contact-details{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .article-aside{position:static}
+ .article-image{aspect-ratio:3/2;max-height:380px}
+ .doctors-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+ .doctor-placeholder{max-height:390px}
+ .contact-band-inner{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+ .contact-band .button{margin-top:0}
+ .contact-band p{max-width:520px}
+ .footer-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+ .footer-brand{grid-column:1/-1}
+ .footer-contact{display:block}
+ .footer-bottom{flex-direction:column;gap:8px;line-height:1.8}
+ .page-heading h1{font-size:clamp(44px,8vw,65px)}
+ .section-head{flex-wrap:wrap;gap:20px}
+ .section{padding:52px 0}
+}
+@media(max-width:640px){
+ .nav-appointment{display:none!important}
+ .nav-wrap{gap:12px}
+ .nav-actions{gap:10px;flex-shrink:0}
+ .brand{gap:6px;min-width:0;max-width:calc(100% - 106px);flex-shrink:1}
+ .brand-words{font-size:27px;white-space:normal;line-height:1.05}
+ .brand-words small{font-size:5.6px;letter-spacing:1.4px;line-height:1.6}
+ .brand-mark{width:29px;min-width:29px;height:37px}
+ .custom-logo{width:170px;max-height:54px;object-fit:contain}
+ .lang{gap:2px}
+ .lang a{min-width:24px}
+ .menu-toggle{padding:4px;width:40px}
+ .mobile-nav{padding:12px var(--page-gutter) 20px}
+ .mobile-nav a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid var(--line)}
+ .hero h1{font-size:clamp(47px,11vw,65px);letter-spacing:-1.5px}
+ .hero-copy>p{font-size:14px}
+ .hero-shortcuts>a{font-size:10px}
+ .hero-copy .eyebrow{font-size:8px;letter-spacing:1.5px}
+ .board-caption{padding:14px 0 2px}
+ .board-caption strong{font-size:12px}
+ .board-heading{font-size:7px}
+ .board-main-photo>span{font-size:8px}
+ .values-strip .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;text-align:center}
+ .values-strip span{font-size:20px;line-height:1.2}
+ .values-strip i:nth-of-type(2){display:none}
+ .treatment-grid,.treatments .treatment-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .treatment-card{padding:19px 16px 15px}
+ .treatment-card h3{font-size:27px}
+ .treatment-card p{font-size:13px}
+ .card-bottom{font-size:10px}
+ .faq-item summary{font-size:14px}
+ .faq-answer{font-size:13px}
+ .blog-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+ .post-card{display:block;padding:11px 11px 19px}
+ .post-image,.post-card:first-child .post-image{height:auto;aspect-ratio:3/2}
+ .post-card .post-meta{font-size:8px;margin:18px 10px 12px;gap:10px;letter-spacing:1px}
+ .post-card h3{font-size:29px;margin:0 10px 11px;line-height:1.15}
+ .post-card p{font-size:14px;margin:0 10px;line-height:1.8}
+ .post-arrow{height:40px;width:40px;bottom:13px;right:13px;font-size:20px}
+ .doctors-grid{grid-template-columns:minmax(0,1fr)}
+ .doctor-placeholder{max-height:420px;width:100%;aspect-ratio:4/5}
+ .doctor-card h2{font-size:33px}
+ .doctor-feature{padding:28px 22px;gap:18px}
+ .doctor-avatar{width:95px;height:125px}
+ .doctor-feature h3{font-size:30px}
+ .contact-details{gap:22px}
+ .appointment-card{padding:28px}
+ .appointment-card h2{font-size:46px}
+ .article-image{max-height:330px}
+ .article-aside{padding:28px}
+ .footer-main .brand{max-width:100%}
+ .footer-main .brand-words{font-size:30px}
+ .footer-bottom{font-size:10px}
+ .footer-bottom>span:last-child{font-size:9px}
+}
+@media(max-width:479px){
+ .treatment-grid,.treatments .treatment-grid{grid-template-columns:minmax(0,1fr)}
+ .treatment-card{padding:23px}
+ .treatment-card h3{font-size:30px}
+ .treatment-card p{font-size:14px;max-width:none}
+ .card-bottom{font-size:12px}
+ .treatment-icon{height:46px;width:46px}
+ .treatment-top{margin-bottom:20px}
+ .section-head h2,.treatments .section-head h2,.about-copy h2,.faq-grid>div:first-child h2,.blog-section .section-head h2,.doctor-preview h2{font-size:clamp(39px,10.8vw,48px)}
+ .hero-shortcuts{gap:9px}
+ .hero-shortcuts>a{font-size:9px;gap:5px}
+ .board-caption>span:last-child{font-size:27px}
+ .contact-details{grid-template-columns:minmax(0,1fr)}
+ .contact-details p,.contact-details a{font-size:14px}
+ .doctor-feature{padding:28px 17px;gap:14px}
+ .doctor-avatar{height:110px;width:80px}
+ .doctor-feature h3{font-size:27px}
+ .doctor-feature .round-arrow{height:28px;width:28px}
+ .page-heading h1{font-size:clamp(41px,11vw,52px)}
+ .breadcrumb{font-size:10px;line-height:1.7}
+ .contact-band h2{font-size:clamp(40px,10.5vw,48px)}
+}
+@media(max-width:359px){
+ .nav-wrap{gap:7px}
+ .brand-words{font-size:23px}
+ .brand-words small{font-size:5px;letter-spacing:1px}
+ .brand-mark{width:24px;min-width:24px}
+ .nav-actions{gap:5px}
+ .hero h1{font-size:44px}
+ .hero-buttons .button{width:100%;font-size:12px}
+ .board-caption strong{font-size:11px}
+ .board-caption div>span{font-size:10px}
+ .board-caption-icon{height:29px;width:29px}
+ .board-caption>span:last-child{display:none}
+ .doctor-feature{flex-wrap:wrap}
+ .doctor-feature .round-arrow{position:absolute;bottom:20px;right:20px}
+ .footer-main{gap:22px}
+ .appointment-card,.article-aside{padding:22px}
+}
+@media(prefers-reduced-motion:reduce){.clinic-board{transform:none}}
+.contact-map{margin-top:55px;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.contact-map-heading{padding:26px 30px;background:var(--cream);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.contact-map-heading .eyebrow{margin-bottom:12px}
+.contact-map-heading h3{font:34px/1.15 var(--serif);margin:0}
+.contact-map iframe{display:block;width:100%;height:360px;border:0}
+@media(max-width:640px){.contact-map{margin-top:35px}.contact-map-heading{padding:23px;gap:15px}.contact-map-heading h3{font-size:29px}.contact-map iframe{height:290px}}
+/* Compact footer: grouped navigation and reduced vertical spacing. */
+footer>.wrap{max-width:1140px}
+.footer-main{grid-template-columns:minmax(0,1.2fr) minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:36px;padding:30px 0}
+.footer-brand{grid-column:auto}
+.footer-brand .brand{max-width:100%}
+.footer-brand .brand-mark{height:38px;width:34px;min-width:34px}
+.footer-brand .brand-words{font-size:29px}
+.footer-brand .brand-words small{font-size:6px;letter-spacing:1.5px;margin-top:8px}
+.footer-brand>p{font-size:11px;line-height:1.6;margin:12px 0 0}
+.footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 22px;align-content:center}
+.footer-links a{font-size:12px;line-height:1.5;padding:7px 0;overflow-wrap:anywhere}
+.footer-links a:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-contact{display:block;grid-column:auto;border:0;padding:0}
+.footer-main>.footer-contact>a:not(.brand){margin:5px 0;font-size:12px;line-height:1.7}
+.footer-contact>p{margin:8px 0 0;font-size:11px;line-height:1.7}
+.footer-bottom{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px 25px;flex-wrap:wrap;padding:14px 0;font-size:9px;line-height:1.6}
+.footer-bottom>span{margin:0}
+.footer-bottom>span:last-child{font-size:9px}
+.contact-band-inner{padding:27px 0;gap:20px}
+.contact-band .eyebrow{margin-bottom:10px;font-size:8px}
+.contact-band h2{font-size:38px;margin-bottom:8px}
+.contact-band p{font-size:12px;line-height:1.7}
+.contact-band .button{padding:15px 20px;font-size:12px;gap:24px}
+@media(max-width:900px){.footer-main{gap:25px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.footer-contact{grid-column:1/-1;display:flex;align-items:baseline;gap:8px 24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:15px}.footer-contact>p{margin:0;flex:1;min-width:200px}.contact-band h2{font-size:35px}}
+@media(max-width:640px){.footer-main{grid-template-columns:minmax(0,1fr);gap:17px;padding:25px 0 20px}.footer-main .footer-brand .brand-words{font-size:28px}.footer-brand>p{margin-top:10px;font-size:11px}.footer-links{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 13px;border-top:1px solid var(--line);padding-top:10px}.footer-links a{font-size:11px;padding:8px 0;min-height:40px;display:flex;align-items:center}.footer-contact{grid-column:auto;display:block;padding-top:12px}.footer-main>.footer-contact>a:not(.brand){margin:0 0 6px;font-size:13px}.footer-contact>p{min-width:0;font-size:11px}.footer-bottom{display:block;padding:12px 0}.footer-bottom>span{display:block;font-size:9px;margin:0}.footer-bottom>span+span{margin-top:4px;font-size:8px}.contact-band-inner{padding:25px 0;gap:18px}.contact-band h2{font-size:33px}.contact-band p{max-width:100%;font-size:11px}.contact-band .button{margin:0;padding:12px 17px;min-height:44px}.contact-band .eyebrow{font-size:7px;letter-spacing:2px}}
+@media(max-width:359px){.footer-links{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-band h2{font-size:31px}}
+/* Readable typography across navigation, content and compact footer. */
+body{font-size:16px;line-height:1.6}
+.desktop-nav{font-size:16px;gap:22px;font-weight:500;line-height:1.5}
+.desktop-nav a{white-space:nowrap;padding:14px 0}
+.nav-wrap{gap:24px}
+.lang{font-size:13px}
+.button,.button.small{font-size:15px;line-height:1.5}
+.button.small{padding:12px 17px;gap:18px}
+.text-link{font-size:15px;line-height:1.6}
+.topline,.topline a{font-size:12px;line-height:1.5}
+.topline .wrap{min-height:36px;height:auto;padding-top:7px;padding-bottom:7px}
+.brand-words small,.footer-brand .brand-words small{font-size:8px;letter-spacing:1.2px;line-height:1.5}
+.eyebrow,.hero-copy .eyebrow{font-size:11px;letter-spacing:1.8px;line-height:1.6}
+.hero-copy>p{font-size:17px;line-height:1.85;max-width:440px}
+.hero-buttons .button,.hero-buttons .text-link{font-size:15px}
+.shortcut-heading{font-size:10px;letter-spacing:1.5px}
+.hero-shortcuts>a{font-size:13px;line-height:1.6}
+.hero-shortcuts>a>span:first-child{font-size:11px}
+.board-heading,.board-main-photo>span{font-size:11px;letter-spacing:1.3px}
+.board-caption strong{font-size:15px}
+.board-caption div>span{font-size:13px}
+.discovery-dock small{font-size:10px;letter-spacing:1.3px;line-height:1.6}
+.section-intro p,.treatment-card p,.about-copy>p,.article-aside p,.faq-grid>div>p,.post-card p,.appointment-card p{font-size:16px;line-height:1.8}
+.about-copy .lead{font-size:19px;line-height:1.7}
+.card-bottom{font-size:13px;line-height:1.6}
+.signature>span{font-size:11px;letter-spacing:1.5px}
+.approach-details p{font-size:13px;line-height:1.7}
+.photo-label{font-size:11px;letter-spacing:1.3px;line-height:1.6}
+.doctor-feature p,.doctor-card p{font-size:15px;line-height:1.7}
+.faq-item summary,.standalone summary{font-size:16px;line-height:1.65}
+.faq-answer,.standalone .faq-answer{font-size:16px;line-height:1.85}
+.post-card .post-meta{font-size:11px;letter-spacing:1px;line-height:1.6}
+.breadcrumb{font-size:13px;line-height:1.7}
+.page-heading>div>p{font-size:17px;line-height:1.8}
+.prose p,.prose li{font-size:17px;line-height:1.9}
+.contact-details h3,.footer-main h3{font-size:15px;line-height:1.6}
+.contact-details p,.contact-details a{font-size:16px;line-height:1.8}
+.doctor-placeholder>small{font-size:12px;line-height:1.6;text-align:center;padding:0 16px}
+.contact-band .eyebrow{font-size:10px;line-height:1.6}
+.contact-band p{font-size:15px;line-height:1.7}
+.contact-band .button{font-size:15px}
+.footer-links a{font-size:14px;line-height:1.6}
+.footer-brand>p,.footer-contact>p{font-size:14px;line-height:1.7}
+.footer-main>.footer-contact>a:not(.brand){font-size:15px;line-height:1.7}
+.footer-bottom,.footer-bottom>span,.footer-bottom>span:last-child{font-size:12px;line-height:1.7}
+@media(max-width:1200px){
+ .desktop-nav{display:none}
+ .menu-toggle{display:block}
+ .nav-appointment{display:inline-flex!important}
+ .mobile-nav:not([hidden]){display:block!important}
+ .mobile-nav[hidden]{display:none!important}
+ .mobile-nav a{font-size:17px;line-height:1.5;min-height:48px;padding:12px 0}
+ .nav-wrap{gap:20px}
+}
+@media(min-width:1201px){.mobile-nav{display:none!important}}
+@media(max-width:900px){
+ .hero-buttons{gap:12px 18px}
+ .hero-buttons .button{padding:16px 18px;font-size:14px}
+ .hero-buttons .text-link{font-size:14px}
+ .hero-shortcuts>a{font-size:13px}
+ .board-heading{font-size:10px}
+ .board-main-photo>span{font-size:10px}
+ .board-caption strong{font-size:14px}
+ .board-caption div>span{font-size:12px}
+ .treatment-card p{font-size:15px}
+ .post-card .post-meta{font-size:10px}
+}
+@media(max-width:640px){
+ .nav-appointment{display:none!important}
+ .nav-wrap{gap:12px}
+ .lang{font-size:13px;gap:3px}
+ .brand-words small{font-size:7px;letter-spacing:.7px}
+ .footer-brand .brand-words small{font-size:8px;letter-spacing:1px}
+ .topline span{font-size:11px}
+ .eyebrow,.hero-copy .eyebrow{font-size:10px;letter-spacing:1.4px}
+ .hero-copy>p{font-size:16px;line-height:1.8}
+ .hero-buttons .button,.hero-buttons .text-link{font-size:14px}
+ .hero-shortcuts{grid-template-columns:minmax(0,1fr);gap:10px}
+ .hero-shortcuts>a{font-size:14px;align-items:center;gap:12px;min-height:30px}
+ .hero-shortcuts>a>span:first-child{font-size:12px}
+ .hero-shortcuts>a>span:last-child{display:inline;margin-left:auto}
+ .shortcut-heading{font-size:10px;margin-bottom:3px}
+ .board-heading,.board-main-photo>span{font-size:10px}
+ .board-caption strong{font-size:14px}
+ .board-caption div>span{font-size:12px}
+ .discovery-dock small{font-size:10px}
+ .section-intro p,.treatment-card p,.about-copy>p,.article-aside p,.faq-grid>div>p,.post-card p,.appointment-card p{font-size:16px}
+ .about-copy .lead{font-size:18px}
+ .card-bottom{font-size:13px}
+ .photo-label{font-size:10px}
+ .approach-details p{font-size:13px}
+ .faq-item summary,.standalone summary{font-size:16px}
+ .faq-answer,.standalone .faq-answer{font-size:15px}
+ .post-card .post-meta{font-size:11px}
+ .breadcrumb{font-size:12px}
+ .page-heading>div>p{font-size:16px}
+ .prose p,.prose li{font-size:16px}
+ .contact-details p,.contact-details a{font-size:16px}
+ .contact-band .eyebrow{font-size:10px;letter-spacing:1.4px}
+ .contact-band p{font-size:15px}
+ .contact-band .button{font-size:14px}
+ .footer-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+ .footer-links a{font-size:14px;min-height:44px}
+ .footer-brand>p,.footer-contact>p{font-size:14px}
+ .footer-main>.footer-contact>a:not(.brand){font-size:16px}
+ .footer-bottom>span,.footer-bottom>span:last-child{font-size:11px}
+}
+@media(max-width:359px){
+ .nav-wrap{gap:7px}
+ .nav-actions{gap:5px}
+ .brand-words small{font-size:7px;letter-spacing:.5px}
+ .hero-buttons .button{font-size:14px}
+ .board-caption strong{font-size:13px}
+ .board-caption div>span{font-size:12px}
+}
+/* FAQ height follows its questions rather than the neighbouring introduction. */
+.faq-section{padding:48px 0}
+.faq-grid{align-items:start;gap:50px}
+.faq-list{height:auto;min-height:0;align-self:start}
+.faq-grid>div:first-child:after{display:none}
+.faq-grid>div:first-child h2{font-size:44px;margin-bottom:15px}
+.faq-grid>div:first-child .eyebrow{margin-bottom:16px}
+.faq-grid>div:first-child>p{margin-bottom:8px}
+.faq-item summary,.standalone summary{padding:16px 0;min-height:60px}
+.faq-answer,.standalone .faq-answer{padding-bottom:18px}
+@media(max-width:767px){.faq-section{padding:38px 0}.faq-grid{gap:24px}.faq-grid>div:first-child h2{font-size:42px}}
+@media(max-width:359px){.faq-grid>div:first-child h2{font-size:38px}}
+
+/* Navigation: include Home with a slightly smaller, balanced menu. */
+.desktop-nav{font-size:14px;gap:20px}
+.mobile-nav a{font-size:16px}
+/* Uniform blog covers on home and listing pages, including the first card. */
+.blog-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.post-image,.post-card:first-child .post-image{width:100%;height:auto;aspect-ratio:3/2;overflow:hidden}
+.post-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+@media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.blog-grid{grid-template-columns:minmax(0,1fr)}}
+/* Compact shared heading for all inner pages. */
+.page-heading{padding:18px 0 28px}
+.page-heading .breadcrumb{margin-bottom:20px;font-size:12px;gap:10px;line-height:1.6}
+.page-heading .eyebrow{margin-bottom:10px;font-size:10px;letter-spacing:1.5px}
+.page-heading h1{font-size:clamp(36px,3.5vw,48px);line-height:1.12;letter-spacing:-1px;margin-bottom:12px;max-width:900px}
+.page-heading>div>p{font-size:15px;line-height:1.7;max-width:680px;margin-bottom:0}
+.inner-content{padding-top:42px}
+@media(max-width:767px){
+ .page-heading{padding:15px 0 24px}
+ .page-heading .breadcrumb{margin-bottom:17px;font-size:11px}
+ .page-heading .eyebrow{font-size:9px;margin-bottom:9px}
+ .page-heading h1{font-size:clamp(32px,6vw,40px);margin-bottom:10px;letter-spacing:-.7px}
+ .page-heading>div>p{font-size:14px;line-height:1.7}
+ .inner-content{padding-top:30px}
+}
+/* Home treatments: full-width introduction and a 3 × 2 desktop grid. */
+@media(min-width:1101px){
+ .treatments>.wrap{display:block}
+ .treatments .section-head{position:static;display:flex;align-items:flex-end;justify-content:space-between;gap:45px;margin:0 0 30px}
+ .treatments .section-intro{max-width:390px;margin-top:0}
+ .treatments .section-intro:after{display:none}
+ .treatments .treatment-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+}
+/* Contact: address with map on the left, weekly hours and phone on the right. */
+.contact-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:55px;align-items:start}
+.contact-layout>div{min-width:0}
+.contact-layout h2{font-size:34px;line-height:1.15;letter-spacing:-.7px;margin:0 0 18px}
+.contact-layout .eyebrow{margin-bottom:13px}
+.contact-address{font-size:16px;line-height:1.8;margin:0 0 22px;min-height:58px}
+.contact-location .contact-map{margin:0 0 9px}
+.contact-location .contact-map iframe{height:355px}
+.contact-sidebar{background:var(--cream);border:1px solid var(--line);border-radius:4px;padding:28px 30px}
+.weekly-hours{margin:0}
+.weekly-hours>div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.6}
+.weekly-hours dt{font-weight:500;min-width:0;overflow-wrap:anywhere}
+.weekly-hours dd{margin:0;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.contact-phone-block{margin-top:23px}
+.contact-phone-block h3{font-size:14px;line-height:1.6;margin:0 0 9px}
+.contact-phone-number{font-size:23px;font-weight:500;display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.5;overflow-wrap:anywhere}
+.contact-phone-number>span{font-size:22px;color:var(--gold)}
+.contact-email{display:block;font-size:15px;margin-top:10px;overflow-wrap:anywhere}
+.contact-whatsapp{margin-top:20px;width:100%;gap:12px;font-size:14px;padding:14px 17px}
+.contact-wa-icon{height:24px;width:24px;flex-shrink:0}
+.contact-wa-icon svg{height:100%;width:100%}
+.contact-whatsapp>span:last-child{margin-left:auto}
+@media(max-width:900px){.contact-layout{gap:30px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.contact-sidebar{padding:25px 22px}.contact-location .contact-map iframe{height:345px}.weekly-hours>div{font-size:14px;gap:12px}.contact-layout h2{font-size:31px}.contact-phone-number{font-size:21px}}
+@media(max-width:767px){.contact-layout{grid-template-columns:minmax(0,1fr);gap:30px}.contact-location .contact-map iframe{height:310px}.contact-address{min-height:0}.contact-layout h2{font-size:32px}.contact-sidebar{padding:26px}.weekly-hours>div{font-size:15px}.contact-phone-number{font-size:24px}}
+@media(max-width:359px){.contact-sidebar{padding:22px 18px}.weekly-hours>div{font-size:14px}.contact-layout h2{font-size:29px}.contact-phone-number{font-size:21px}.contact-location .contact-map iframe{height:280px}}
+/* Align the contact columns and let the map fill the remaining height. */
+@media(min-width:768px){
+ .contact-layout{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:32px;align-items:stretch}
+ .contact-location{display:flex;flex-direction:column}
+ .contact-address{white-space:normal;font-size:clamp(12px,1.05vw,15px);line-height:1.8;min-height:0;margin-bottom:20px}
+ .contact-location .contact-map{flex:1;min-height:300px;position:relative;margin-bottom:8px}
+ .contact-location .contact-map iframe{position:absolute;inset:0;width:100%;height:100%}
+ .contact-location>.text-link{align-self:flex-start}
+ .contact-sidebar{height:100%}
+}
+@media(min-width:1101px){.contact-address{white-space:nowrap;overflow-wrap:normal;font-size:14px}}
+/* Larger contact address while retaining the single-line desktop layout. */
+.contact-address{font-size:16px;line-height:1.8}
+@media(min-width:768px){.contact-address{font-size:15px}}
+@media(min-width:1101px){.contact-address{font-size:16px}}
+/* Keep the doctor card arrow beside the name, rather than at the far edge. */
+.doctor-card h2{justify-content:flex-start;gap:18px}
+.doctor-card h2>span{flex-shrink:0}
+/* On mobile, place the clinic image before the discovery links. */
+.hero-shortcuts-mobile{display:none}
+@media(max-width:767px){
+ .hero-shortcuts-desktop{display:none}
+ .hero-shortcuts-mobile{display:grid;width:100%;max-width:540px;justify-self:center;margin-top:0}
+}
+/* Preserve Google's own place card on narrow screens without a custom overlay. */
+.contact-location .contact-map{position:relative}
+.contact-location .contact-map iframe{position:absolute;inset:0;width:100%;height:100%;transform-origin:top left}
+@media(max-width:767px){.contact-location .contact-map{height:310px}}
+@media(max-width:359px){.contact-location .contact-map{height:280px}}
+.footer-social{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
+.footer-social a{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--green);transition:background .2s,color .2s,border-color .2s}
+.footer-social svg{width:20px;height:20px;display:block}
+.footer-social a:hover{background:var(--green);border-color:var(--green);color:var(--cream)}
+@media(max-width:640px){.footer-social a{width:44px;height:44px}}
