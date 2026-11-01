@@ -124,4 +124,14 @@ class ClinicSiteTest extends TestCase {
   $post->update(['body'=>['tr'=>'<p>Güvenli içerik</p><script>alert("xss")</script>','en'=>'Safe content']]);
   $this->get('/tr/blog/'.$post->slug)->assertSee('Güvenli içerik')->assertDontSee('<script>alert',false);
  }
+ public function test_popup_requires_enabled_image_and_supports_both_languages(): void {
+  $settings=ClinicSetting::first();
+  $settings->update(['popup_enabled'=>true,'popup_image'=>null]);
+  $this->get('/tr')->assertDontSee('<dialog class="announcement-popup"',false);
+  $settings->update(['popup_image'=>'popup/test.jpg','popup_url'=>'https://example.com/appointment','popup_alt'=>['tr'=>'Klinik duyurusu test','en'=>'Clinic announcement test']]);
+  $this->get('/tr')->assertSee('<dialog class="announcement-popup"',false)->assertSee('popup/test.jpg')->assertSee('https://example.com/appointment')->assertSee('Klinik duyurusu test');
+  $this->get('/en')->assertSee('Clinic announcement test');
+  $settings->update(['popup_enabled'=>false]);
+  $this->get('/tr')->assertDontSee('<dialog class="announcement-popup"',false);
+ }
 }

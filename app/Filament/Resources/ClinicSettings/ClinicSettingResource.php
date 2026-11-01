@@ -6,7 +6,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Schemas\Components\{Section,Tabs};
 use Filament\Schemas\Components\Tabs\Tab;
-use Filament\Forms\Components\{TextInput,Textarea,FileUpload};
+use Filament\Forms\Components\{TextInput,Textarea,FileUpload,Toggle};
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Actions\EditAction;
@@ -52,6 +52,15 @@ class ClinicSettingResource extends Resource {
      Section::make('Google Haritalar')->description('Konum bağlantısı ve sayfa içinde görüntülenen harita.')->schema([
       TextInput::make('map_url')->label('Harita bağlantısı')->url()->startsWith('https://')->maxLength(1000)->helperText('Haritada aç bağlantısının yönlendireceği adres.'),
       Textarea::make('map_embed_url')->label('Harita yerleştirme adresi')->rows(4)->rules(['nullable','url','starts_with:https://www.google.com/maps/embed?'])->maxLength(4000)->helperText('Google Haritalar → Paylaş → Harita yerleştirme bölümündeki iframe src adresini yapıştırın.'),
+     ]),
+    ]),
+    Tab::make('Açılış popup’ı')->schema([
+     Section::make('Görsel duyuru')->description('Tüm sayfalarda, ziyaretçinin tarayıcı oturumunda bir kez gösterilir. Görsel değişirse yeniden gösterilir.')->schema([
+      Toggle::make('popup_enabled')->label('Popup aktif')->default(false),
+      FileUpload::make('popup_image')->label('Popup görseli')->image()->disk('public')->directory('popup')->visibility('public')->maxSize(4096)->helperText('JPG, PNG veya WebP. En fazla 4 MB. Dikey veya kare görsel önerilir.'),
+      TextInput::make('popup_url')->label('Görsele tıklanınca açılacak bağlantı')->url()->startsWith('https://')->maxLength(1000)->helperText('İsteğe bağlı. Boşsa görsel bağlantısız gösterilir.'),
+      TextInput::make('popup_alt.tr')->label('Görsel açıklaması (Türkçe)')->maxLength(250),
+      TextInput::make('popup_alt.en')->label('Image description (English)')->maxLength(250),
      ]),
     ]),
     Tab::make('Sosyal medya')->schema([

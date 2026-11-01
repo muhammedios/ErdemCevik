@@ -508,5 +508,76 @@ body{font-size:16px;line-height:1.6}
 .footer-social{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
 .footer-social a{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--green);transition:background .2s,color .2s,border-color .2s}
 .footer-social svg{width:20px;height:20px;display:block}
+.faq-plus{position:relative;align-self:center;line-height:1}
+.faq-plus::before,.faq-plus::after{content:'';position:absolute;top:50%;left:50%;width:11px;height:1.5px;background:currentColor;border-radius:1px;transform:translate(-50%,-50%)}
+.faq-plus::after{transform:translate(-50%,-50%) rotate(90deg)}
 .footer-social a:hover{background:var(--green);border-color:var(--green);color:var(--cream)}
 @media(max-width:640px){.footer-social a{width:44px;height:44px}}
+
+/* Mobile navigation slides in from the right. */
+body.menu-open{overflow:hidden}
+.mobile-menu{position:fixed;inset:var(--menu-top,80px) 0 auto auto;margin:0;width:min(74vw,280px);max-width:100%;height:auto;max-height:calc(100dvh - var(--menu-top,80px));padding:14px 22px 22px;border:1px solid var(--line);border-right:0;border-radius:0 0 0 16px;background:#fffdf8;color:var(--ink);box-shadow:-6px 12px 24px #12352e14;overflow-y:auto;overscroll-behavior:contain}
+.mobile-menu[open]{animation:menu-slide-in .25s ease-out}
+.mobile-menu::backdrop{background:linear-gradient(to bottom,transparent 0 var(--menu-top,80px),#12352e33 var(--menu-top,80px) 100%)}
+.mobile-menu-heading{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line);font:24px var(--serif)}
+.mobile-menu-close{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--green);font:30px/1 var(--sans)}
+.mobile-menu .mobile-nav{display:block!important;max-height:none;padding:4px 0 0;border:0;overflow:visible;background:transparent}
+.mobile-menu .mobile-nav a{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:48px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.mobile-menu .mobile-nav a[aria-current="page"]{color:var(--green);font-weight:600}
+.mobile-menu .mobile-nav a>span{color:var(--gold)}
+@keyframes menu-slide-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.mobile-menu[open]{animation:none}}
+
+/* Dentist detail uses a portrait rather than an article cover. */
+@media(min-width:1101px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:48px}.hero .clinic-board{max-width:600px}}
+@media(min-width:768px) and (max-width:1100px){.hero .clinic-board{max-width:520px}}
+@media(max-width:767px){.hero .clinic-board{max-width:600px;padding:10px}.hero .board-main-photo{aspect-ratio:4/3}}
+.doctor-profile{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(30px,5vw,72px);align-items:start;max-width:1020px;margin:0 auto}
+.doctor-profile-portrait{width:100%;overflow:hidden;border:1px solid var(--line);border-radius:120px 120px 6px 6px;background:var(--cream)}
+.doctor-profile-portrait>img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}
+.doctor-profile-portrait .doctor-placeholder{height:auto;aspect-ratio:3/4;margin:0;border-radius:0;text-align:center;padding:20px}
+.doctor-profile-info{min-width:0;padding-top:14px}
+.doctor-profile-info>.eyebrow{margin-bottom:16px}
+.doctor-profile-info>h2{font-size:clamp(36px,4vw,48px);margin-bottom:12px}
+.doctor-profile-role{font-size:17px;margin-bottom:26px;color:var(--gold)}
+.doctor-profile-contact{margin-top:26px;padding:22px 24px;background:var(--cream);border:1px solid var(--line);border-radius:6px}
+.doctor-profile-contact h3{font:30px/1.15 var(--serif);margin:0 0 10px}
+.doctor-profile-contact p{font-size:15px;line-height:1.7;margin-bottom:18px}
+.doctor-profile-contact .button{width:auto;padding:13px 18px;font-size:14px;gap:22px}
+.doctor-profile-back{margin-top:22px}
+@media(max-width:767px){.doctor-profile{grid-template-columns:minmax(0,1fr);gap:26px}.doctor-profile-portrait{max-width:290px;justify-self:center}.doctor-profile-info{padding-top:0}.doctor-profile-info>h2{font-size:38px}.doctor-profile-contact{padding:20px}.doctor-profile-role{margin-bottom:20px}}
+
+/* Compact, labeled footer contact details. */
+@media(max-width:640px){.footer-links{display:none}}
+.footer-main{align-items:start}
+.footer-main>.footer-contact{display:grid;gap:12px;margin:0;padding:0;border:0;min-width:0}
+.footer-contact-row{display:grid;grid-template-columns:66px minmax(0,1fr);gap:12px;align-items:baseline}
+.footer-contact-row dt{font-size:13px;font-weight:600;line-height:1.7;color:var(--green)}
+.footer-contact-row dd{margin:0;font-size:14px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
+.footer-contact-row a{transition:color .2s}
+.footer-contact-row a:hover{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+@media(min-width:641px) and (max-width:900px){.footer-main>.footer-contact{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));padding-top:16px;border-top:1px solid var(--line)}.footer-contact-row:last-child{grid-column:1/-1}}
+@media(max-width:640px){.footer-main>.footer-contact{padding-top:14px;border-top:1px solid var(--line);gap:10px}.footer-contact-row{grid-template-columns:62px minmax(0,1fr);gap:10px}}
+
+body.announcement-open{overflow:hidden}
+.announcement-popup{position:fixed;margin:auto;padding:0;border:0;border-radius:12px;background:var(--cream);width:fit-content;max-width:calc(100vw - 36px);max-height:calc(100dvh - 60px);overflow:auto;box-shadow:0 20px 70px #12352e40}
+.announcement-popup::backdrop{background:#12352e99}
+.announcement-popup img{display:block;width:auto;height:auto;max-width:min(560px,calc(100vw - 36px));max-height:calc(100dvh - 60px);object-fit:contain}
+.announcement-close{position:absolute;right:10px;top:10px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fffdf8;color:var(--green);font:30px/1 var(--sans);display:grid;place-items:center;z-index:1;box-shadow:0 2px 10px #12352e20}
+
+/* Two dentists share a row beneath a compact section heading. */
+@media(min-width:768px){
+ .doctor-preview.doctor-count-2{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:28px;align-items:stretch}
+ .doctor-preview.doctor-count-2>div:first-child{grid-column:1/-1;grid-row:auto;display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+ .doctor-preview.doctor-count-2>div:first-child .eyebrow{margin:0}
+ .doctor-preview.doctor-count-2>div:first-child h2{font-size:clamp(34px,3.5vw,46px);margin:0;line-height:1.15}
+ .doctor-preview.doctor-count-2>div:first-child h2 br{display:none}
+ .doctor-preview.doctor-count-2>div:first-child h2 em{margin-left:8px}
+ .doctor-preview.doctor-count-2>.doctor-feature{grid-column:auto;grid-row:auto;width:100%;max-width:none;margin:0;padding:24px;gap:20px;border-radius:5px 45px 5px 5px;box-shadow:5px 5px 0 var(--sand)}
+ .doctor-preview.doctor-count-2 .doctor-avatar{width:86px;height:110px;flex-shrink:0}
+ .doctor-preview.doctor-count-2 .doctor-feature h3{font-size:clamp(25px,2.5vw,32px);margin-bottom:10px}
+ .doctor-preview.doctor-count-2 .doctor-feature p{margin:0}
+ .doctor-preview.doctor-count-2 .doctor-feature:before{font-size:25px;top:12px;right:18px}
+ .doctor-preview.doctor-count-2 .round-arrow{width:32px;height:32px;flex-shrink:0}
+}
+@media(max-width:767px){.doctor-preview.doctor-count-2{gap:22px}.doctor-preview.doctor-count-2>.doctor-feature{max-width:none}}

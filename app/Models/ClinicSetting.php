@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class ClinicSetting extends Model {
  protected $guarded = [];
- protected function casts(): array { return ['address'=>'array','hours'=>'array','site_texts'=>'array','site_images'=>'array','show_preview_notice'=>'boolean']; }
+ protected function casts(): array { return ['address'=>'array','hours'=>'array','site_texts'=>'array','site_images'=>'array','show_preview_notice'=>'boolean','popup_enabled'=>'boolean','popup_alt'=>'array']; }
  public function translated(string $field): string { return (string) (($this->{$field} ?? [])[app()->getLocale()] ?? ''); }
  public function siteText(string $key, ?string $locale = null): string {
   $locale ??= app()->getLocale();

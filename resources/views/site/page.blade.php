@@ -10,7 +10,7 @@
 <div class="values-strip"><div class="wrap"><span>{{ $copy('values_01') }}</span><i>✧</i><span>{{ $copy('values_02') }}</span><i>✧</i><span>{{ $copy('values_03') }}</span><i>✧</i><span>{{ $copy('values_04') }}</span></div></div>
 <section class="section treatments"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{{ $copy('treatments_01') }}</span><h2>{{ $copy('treatments_02') }}<br><em>{{ $copy('treatments_03') }}</em></h2></div><div class="section-intro"><p>{{ $copy('treatments_04') }}</p><a class="text-link" href="{{ $url('treatment') }}">{{ $copy('treatments_05') }} <span>↗</span></a></div></div><div class="treatment-grid">@foreach($treatments as $item)@include('site.treatment-card')@endforeach</div></div></section>
 <section class="section about-section"><div class="wrap about-grid"><div class="about-photo"><img src="{{ $settings->siteImageUrl('home_about', 'images/care.jpg') }}" loading="lazy" alt="{{ $copy('about_image_alt') }}"><span class="photo-label">{{ $copy('about_01') }} <span>↗</span></span></div><div class="about-copy"><span class="eyebrow">{{ $copy('about_02') }}</span><h2>{{ $copy('about_03') }}<br><em>{{ $copy('about_04') }}</em></h2><p class="lead">{{ $copy('about_05') }}</p><p>{{ $copy('about_06') }}</p><a class="text-link" href="{{ $url('about') }}">{{ $copy('about_07') }} <span>↗</span></a><div class="signature">{{ $copy('about_signature') }} <span>{{ $copy('about_role') }}</span></div><div class="approach-details"><div><span>01</span><p>{{ $copy('about_08') }}</p></div><div><span>02</span><p>{{ $copy('about_09') }}</p></div><div><span>03</span><p>{{ $copy('about_10') }}</p></div></div></div></div></section>
-<section class="section doctor-section"><div class="wrap doctor-preview"><div><span class="eyebrow">{{ $copy('doctors_01') }}</span><h2>{{ $copy('doctors_02') }}<br><em>{{ $copy('doctors_03') }}</em></h2></div>@foreach($doctors as $item)<a class="doctor-feature" href="{{ $url('doctor',$item->slug) }}"><div class="doctor-avatar">@if($item->imageUrl())<img src="{{ $item->imageUrl() }}" alt="{{ $item->translated('title') }}" loading="lazy">@else<span>eç</span>@endif</div><div><h3>{{ $item->translated('title') }}</h3><p>{{ $item->translated('excerpt') }}</p></div><span class="round-arrow">↗</span></a>@endforeach</div></section>
+<section class="section doctor-section"><div class="wrap doctor-preview doctor-count-{{ $doctors->count() }}"><div><span class="eyebrow">{{ $copy('doctors_01') }}</span><h2>{{ $copy('doctors_02') }}<br><em>{{ $copy('doctors_03') }}</em></h2></div>@foreach($doctors as $item)<a class="doctor-feature" href="{{ $url('doctor',$item->slug) }}"><div class="doctor-avatar">@if($item->imageUrl())<img src="{{ $item->imageUrl() }}" alt="{{ $item->translated('title') }}" loading="lazy">@else<span>eç</span>@endif</div><div><h3>{{ $item->translated('title') }}</h3><p>{{ $item->translated('excerpt') }}</p></div><span class="round-arrow">↗</span></a>@endforeach</div></section>
 <section class="section faq-section"><div class="wrap faq-grid"><div><span class="eyebrow">{{ $copy('faq_01') }}</span><h2>{{ $copy('faq_02') }}<br><em>{{ $copy('faq_03') }}</em></h2><p>{{ $copy('faq_04') }}</p><a class="text-link" href="{{ $url('faq') }}">{{ $copy('faq_05') }} <span>↗</span></a></div><div class="faq-list">@foreach($faqs as $item)@include('site.faq-item')@endforeach</div></div></section>
 <section class="section blog-section"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{{ $copy('blog_01') }}</span><h2>{{ $copy('blog_02') }} <em>{{ $copy('blog_03') }}</em></h2></div><a class="text-link" href="{{ $url('post') }}">{{ $copy('blog_04') }} <span>↗</span></a></div><div class="blog-grid">@foreach($posts as $item)@include('site.post-card')@endforeach</div></div></section>
 @else
@@ -51,6 +51,25 @@
             @endif
         </div>
     </div>
+</div>
+@elseif($kind === 'doctor' && $slug)
+<div class="doctor-profile">
+    <div class="doctor-profile-portrait">
+        @if($page->imageUrl())<img src="{{ $page->imageUrl() }}" alt="{{ $page->translated('title') }}">
+        @else<div class="doctor-placeholder"><span>eç</span><small>{{ $t('Hekim fotoğrafı yakında eklenecek.','Dentist photograph coming soon.') }}</small></div>@endif
+    </div>
+    <article class="doctor-profile-info">
+        <span class="eyebrow">{{ $labels['doctor'] }}</span>
+        <h2>{{ $page->translated('title') }}</h2>
+        @if($page->translated('excerpt'))<p class="doctor-profile-role">{{ $page->translated('excerpt') }}</p>@endif
+        <div class="prose">{!! str($page->translated('body'))->sanitizeHtml() !!}</div>
+        <div class="doctor-profile-contact">
+            <h3>{{ $copy('article_title') }}</h3>
+            <p>{{ $copy('article_body') }}</p>
+            <a class="button" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('article_button') }} <span aria-hidden="true">↗</span></a>
+        </div>
+        <a class="text-link doctor-profile-back" href="{{ $url('doctor') }}">← {{ $labels['doctor'] }}</a>
+    </article>
 </div>
 @elseif($kind === 'about' || $slug)
 <div class="article-grid"><article class="prose">@if($page->imageUrl())<img class="article-image" src="{{ $page->imageUrl() }}" alt="{{ $page->translated('title') }}">@elseif($kind === 'doctor')<div class="doctor-placeholder"><span>eç</span><small>{{ $t('Hekim fotoğrafı yakında eklenecek.','Dentist photograph coming soon.') }}</small></div>@endif{!! str($page->translated('body'))->sanitizeHtml() !!}</article><aside class="article-aside"><span class="eyebrow">{{ $copy('article_label') }}</span><h3>{{ $copy('article_title') }}</h3><p>{{ $copy('article_body') }}</p><a class="button" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('article_button') }} ↗</a><a class="text-link" href="{{ $url($kind === 'about' ? 'doctor' : $kind) }}">{{ $t('Keşfetmeye devam edin','Keep exploring') }} →</a></aside></div>

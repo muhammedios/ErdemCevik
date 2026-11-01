@@ -35,8 +35,12 @@ $wa = $settings->whatsappUrl();
 <nav class="desktop-nav" aria-label="{{ $t('Ana menü','Main navigation') }}">@foreach(['home','about','treatment','doctor','post','contact'] as $key)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $labels[$key] }}</a>@endforeach</nav>
 <div class="nav-actions"><div class="lang"><span aria-hidden="true">◎</span><a href="{{ $tr ? url()->current() : $alternateUrl }}" lang="tr" class="{{ $tr ? 'selected' : '' }}" @if($tr) aria-current="true" @endif>TR</a><span class="lang-divider">/</span><a href="{{ $tr ? $alternateUrl : url()->current() }}" lang="en" class="{{ !$tr ? 'selected' : '' }}" @if(!$tr) aria-current="true" @endif>EN</a></div>
 <a class="button small nav-appointment" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('nav_appointment') }} <span>↗</span></a>
-<button class="menu-toggle" aria-label="{{ $t('Menüyü aç','Open menu') }}" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
-</div><nav id="mobile-nav" class="mobile-nav" hidden aria-label="{{ $t('Mobil menü','Mobile navigation') }}">@foreach($labels as $key=>$label)<a href="{{ $url($key) }}">{{ $label }}</a>@endforeach</nav></header>
+<button class="menu-toggle" aria-label="{{ $t('Menüyü aç','Open menu') }}" aria-expanded="false" aria-controls="mobile-menu" aria-haspopup="dialog"><span></span><span></span></button></div>
+</div></header>
+<dialog id="mobile-menu" class="mobile-menu" aria-label="{{ $t('Mobil menü','Mobile navigation') }}">
+<div class="mobile-menu-heading"><span>{{ $t('Menü','Menu') }}</span><button class="mobile-menu-close" type="button" aria-label="{{ $t('Menüyü kapat','Close menu') }}">×</button></div>
+<nav id="mobile-nav" class="mobile-nav" aria-label="{{ $t('Mobil menü','Mobile navigation') }}">@foreach($labels as $key=>$label)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $label }}<span aria-hidden="true">↗</span></a>@endforeach</nav>
+</dialog>
 <main id="main">@yield('content')</main>
 <section class="contact-band"><div class="wrap contact-band-inner"><div><span class="eyebrow light">{{ $copy('cta_label') }}</span><h2>{{ $copy('cta_title') }}</h2><p>{{ $copy('cta_body') }}</p></div><a class="button cream" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('cta_button') }} <span>↗</span></a></div></section>
 <footer>
@@ -57,13 +61,21 @@ $wa = $settings->whatsappUrl();
                 <a href="{{ $url($key) }}">{{ $labels[$key] }}</a>
             @endforeach
         </nav>
-        <div class="footer-contact">
-            @if($settings->phone)<a href="tel:{{ preg_replace('/[^+0-9]/','',$settings->phone) }}">{{ $settings->phone }}</a>@endif
-            @if($settings->email)<a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a>@endif
-            <p>{{ $settings->translated('address') }}</p>
-        </div>
+        <dl class="footer-contact">
+            @if($settings->phone)<div class="footer-contact-row"><dt>{{ $t('Telefon','Phone') }}</dt><dd><a href="tel:{{ preg_replace('/[^+0-9]/','',$settings->phone) }}">{{ $settings->phone }}</a></dd></div>@endif
+            @if($settings->email)<div class="footer-contact-row"><dt>{{ $t('E-posta','Email') }}</dt><dd><a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a></dd></div>@endif
+            @if($settings->translated('address'))<div class="footer-contact-row"><dt>{{ $t('Adres','Address') }}</dt><dd>@if($settings->map_url)<a href="{{ $settings->map_url }}" target="_blank" rel="noopener noreferrer">{{ $settings->translated('address') }}</a>@else{{ $settings->translated('address') }}@endif</dd></div>@endif
+        </dl>
     </div>
     <div class="wrap footer-bottom"><span>© {{ now('Europe/Istanbul')->year }} {{ $settings->name }}. {{ $t('Tüm hakları saklıdır.','All rights reserved.') }}</span>@if($settings->show_preview_notice)<span>{{ $t('Önizleme · Örnek içerikler ve stok görseller kullanılmıştır.','Preview · Sample content and stock photography.') }}</span>@endif</div>
 </footer>
 @if($wa)<a class="floating-wa" href="{{ $wa }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">@include('site.whatsapp')</a>@endif
+@if($settings->popup_enabled && $settings->popup_image)
+<dialog class="announcement-popup" aria-label="{{ $t('Klinik duyurusu','Clinic announcement') }}" data-popup-key="{{ hash('sha256', $settings->popup_image) }}">
+<button class="announcement-close" type="button" aria-label="{{ $t('Duyuruyu kapat','Close announcement') }}">×</button>
+@if($settings->popup_url && str_starts_with($settings->popup_url, 'https://'))<a href="{{ $settings->popup_url }}" target="_blank" rel="noopener noreferrer">@endif
+<img src="{{ asset('storage/'.$settings->popup_image) }}" alt="{{ $settings->translated('popup_alt') ?: $t('Klinik duyurusu','Clinic announcement') }}">
+@if($settings->popup_url && str_starts_with($settings->popup_url, 'https://'))</a>@endif
+</dialog>
+@endif
 </body></html>
