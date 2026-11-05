@@ -2,8 +2,6 @@
 $tr = $locale === 'tr';
 $t = fn($a,$b) => $tr ? $a : $b;
 $labels = ['home'=>$t('Ana sayfa','Home'),'about'=>$t('Hakkımızda','About us'),'treatment'=>$t('Tedavilerimiz','Treatments'),'doctor'=>$t('Doktorlarımız','Our dentists'),'post'=>'Blog','faq'=>$t('Sık sorulan sorular','FAQs'),'contact'=>$t('İletişim','Contact')];
-$title = $page?->translated('seo_title') ?: ($kind === 'home' ? $t('Doğal gülüşler, kişisel bir yaklaşım','Natural smiles, a personal approach') : ($page?->translated('title') ?: $labels[$kind]));
-$description = $page?->translated('seo_description') ?: ($page?->translated('excerpt') ?: $t('Diş Hekimi Erdem Çevik. Tedavilerimiz ve hekimimiz hakkında bilgi edinin.','Dentist Erdem Çevik. Explore our treatments and meet our dentist.'));
 $wa = $settings->whatsappUrl();
 $logoUrl = $settings->logo ? asset('storage/'.$settings->logo) : asset('images/cevik-logo.jpeg');
 @endphp
@@ -11,12 +9,17 @@ $logoUrl = $settings->logo ? asset('storage/'.$settings->logo) : asset('images/c
 <html lang="{{ $locale }}">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ $t('Diş Hekimi Erdem Çevik', 'Dentist Erdem Çevik') }}</title>
-<meta name="description" content="{{ $description }}"><meta name="theme-color" content="#173d35">
-<link rel="canonical" href="{{ url()->current() }}">
-<link rel="alternate" hreflang="{{ $locale }}" href="{{ url()->current() }}"><link rel="alternate" hreflang="{{ $tr ? 'en' : 'tr' }}" href="{{ $alternateUrl }}">
-<meta property="og:title" content="{{ str_replace("\n", ' ', $title) }} — {{ $settings->name }}"><meta property="og:description" content="{{ $description }}"><meta property="og:type" content="{{ $kind === 'post' && $slug ? 'article' : 'website' }}"><meta property="og:url" content="{{ url()->current() }}">
-@if($page?->imageUrl())<meta property="og:image" content="{{ $page->imageUrl() }}">@endif
+<title>{{ $seo['title'] }}</title>
+<meta name="description" content="{{ $seo['description'] }}"><meta name="theme-color" content="#173d35">
+<meta name="robots" content="{{ \App\Support\SiteSeo::indexable() ? 'index, follow, max-image-preview:large' : 'noindex, nofollow' }}">
+@if(config('seo.google_verification'))<meta name="google-site-verification" content="{{ config('seo.google_verification') }}">@endif
+<link rel="canonical" href="{{ $seo['canonical'] }}">
+@foreach($seo['alternates'] as $lang => $href)<link rel="alternate" hreflang="{{ $lang }}" href="{{ $href }}">@endforeach
+<link rel="alternate" hreflang="x-default" href="{{ $seo['alternates']['tr'] }}">
+<meta property="og:title" content="{{ $seo['title'] }}"><meta property="og:description" content="{{ $seo['description'] }}"><meta property="og:type" content="{{ $kind === 'post' && $slug ? 'article' : 'website' }}"><meta property="og:url" content="{{ $seo['canonical'] }}">
+<meta property="og:site_name" content="{{ $t('Diş Hekimi', 'Dentist') }} {{ $settings->name }}"><meta property="og:locale" content="{{ $tr ? 'tr_TR' : 'en_GB' }}"><meta property="og:image" content="{{ $seo['image'] }}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ $seo['title'] }}"><meta name="twitter:description" content="{{ $seo['description'] }}"><meta name="twitter:image" content="{{ $seo['image'] }}">
+<script type="application/ld+json">{!! json_encode($seo['graph'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR) !!}</script>
 <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">

@@ -9,7 +9,7 @@ class SiteController extends Controller {
   $segments = ['home'=>'home','hakkimizda'=>'about','about'=>'about','doktorlarimiz'=>'doctor','doctors'=>'doctor','tedavilerimiz'=>'treatment','treatments'=>'treatment','blog'=>'post','sss'=>'faq','faq'=>'faq','iletisim'=>'contact','contact'=>'contact'];
   abort_unless(isset($segments[$section]),404);
   $kind = $segments[$section];
-  $paths = ['tr'=>['home'=>'','about'=>'hakkimizda','doctor'=>'doktorlarimiz','treatment'=>'tedavilerimiz','post'=>'blog','faq'=>'sss','contact'=>'iletisim'], 'en'=>['home'=>'','about'=>'about','doctor'=>'doctors','treatment'=>'treatments','post'=>'blog','faq'=>'faq','contact'=>'contact']];
+  $paths = \App\Support\SiteSeo::PATHS;
   abort_unless($section === ($paths[$locale][$kind] ?: 'home'), 404);
   $url = fn(string $key, ?string $itemSlug = null, ?string $lang = null) => url('/'.($lang ?? $locale).($paths[$lang ?? $locale][$key] ? '/'.$paths[$lang ?? $locale][$key] : '').($itemSlug ? '/'.$itemSlug : ''));
   $settings = ClinicSetting::firstOrFail();
@@ -20,7 +20,7 @@ class SiteController extends Controller {
   } elseif ($slug) {
    abort_if($kind === 'faq',404);
    $page = Content::visible()->where('kind',$kind)->where('slug',$slug)->firstOrFail();
-  } else { $query = Content::visible()->where('kind',$kind); $items = $kind === 'faq' ? $query->get() : $query->paginate(9); }
+  } else { $query = Content::visible()->where('kind',$kind); $items = $kind === 'faq' ? $query->get() : $query->paginate(9); if ($items instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator) abort_if($items->currentPage() > $items->lastPage(), 404); }
    $tr = $locale === 'tr';
   $t = fn($a,$b) => $tr ? $a : $b;
   $labels = ['home'=>$t('Ana sayfa','Home'),'about'=>$t('Hakkımızda','About us'),'treatment'=>$t('Tedavilerimiz','Treatments'),'doctor'=>$t('Doktorlarımız','Our dentists'),'post'=>'Blog','faq'=>$t('Sık sorulan sorular','FAQs'),'contact'=>$t('İletişim','Contact')];
@@ -32,6 +32,8 @@ class SiteController extends Controller {
   $data['doctors'] = Content::visible()->where('kind','doctor')->limit(3)->get();
   $data['posts'] = Content::visible()->where('kind','post')->limit(3)->get();
   $data['faqs'] = Content::visible()->where('kind','faq')->get();
+  $pageNumber = $items instanceof \Illuminate\Contracts\Pagination\Paginator ? $items->currentPage() : 1;
+  $data['seo'] = \App\Support\SiteSeo::metadata($locale, $kind, $page, $slug, $settings, $labels, $pageNumber);
   return view('site.page', $data);
  }
 }
