@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 class DatabaseSeeder extends Seeder {
  public function run(): void {
   // Keep bundled demo photos available to Filament's public-disk uploader.
-  foreach (['clinic.jpg','care.jpg','dental.jpg'] as $filename) {
+  foreach (['clinic.jpg','care.jpg','dental.jpg','erdem-cevik.jpg','clinic-waiting.jpg','clinic-reception.jpg','clinic-treatment.jpg','clinic-imaging.jpg'] as $filename) {
    $path = 'images/'.$filename;
    if (!Storage::disk('public')->exists($path)) Storage::disk('public')->put($path,file_get_contents(public_path($path)));
   }

@@ -3,14 +3,15 @@ $tr = $locale === 'tr';
 $t = fn($a,$b) => $tr ? $a : $b;
 $labels = ['home'=>$t('Ana sayfa','Home'),'about'=>$t('Hakkımızda','About us'),'treatment'=>$t('Tedavilerimiz','Treatments'),'doctor'=>$t('Doktorlarımız','Our dentists'),'post'=>'Blog','faq'=>$t('Sık sorulan sorular','FAQs'),'contact'=>$t('İletişim','Contact')];
 $title = $page?->translated('seo_title') ?: ($kind === 'home' ? $t('Doğal gülüşler, kişisel bir yaklaşım','Natural smiles, a personal approach') : ($page?->translated('title') ?: $labels[$kind]));
-$description = $page?->translated('seo_description') ?: ($page?->translated('excerpt') ?: $t('Erdem Çevik kliniği. Tedavilerimiz, hekimimiz ve kliniğimiz hakkında bilgi edinin.','Erdem Çevik clinic. Explore our treatments, dentist and clinic.'));
+$description = $page?->translated('seo_description') ?: ($page?->translated('excerpt') ?: $t('Diş Hekimi Erdem Çevik. Tedavilerimiz ve hekimimiz hakkında bilgi edinin.','Dentist Erdem Çevik. Explore our treatments and meet our dentist.'));
 $wa = $settings->whatsappUrl();
+$logoUrl = $settings->logo ? asset('storage/'.$settings->logo) : asset('images/cevik-logo.jpeg');
 @endphp
 <!doctype html>
 <html lang="{{ $locale }}">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ str_replace("\n", ' ', $title) }} — {{ $settings->name }}</title>
+<title>{{ $t('Diş Hekimi Erdem Çevik', 'Dentist Erdem Çevik') }}</title>
 <meta name="description" content="{{ $description }}"><meta name="theme-color" content="#173d35">
 <link rel="canonical" href="{{ url()->current() }}">
 <link rel="alternate" hreflang="{{ $locale }}" href="{{ url()->current() }}"><link rel="alternate" hreflang="{{ $tr ? 'en' : 'tr' }}" href="{{ $alternateUrl }}">
@@ -23,14 +24,15 @@ $wa = $settings->whatsappUrl();
 <link rel="stylesheet" href="{{ asset('css/refinements.css') }}?v={{ filemtime(public_path('css/refinements.css')) }}">
 <link rel="stylesheet" href="{{ asset('css/responsive.css') }}?v={{ filemtime(public_path('css/responsive.css')) }}">
 <script src="{{ asset('js/site.js') }}?v={{ filemtime(public_path('js/site.js')) }}" defer></script>
+<link rel="stylesheet" href="{{ asset('css/clinic-photos.css') }}">
 </head>
 <body>
 <a class="skip-link" href="#main">{{ $t('İçeriğe geç','Skip to content') }}</a>
 <div class="topline"><div class="wrap"><span>{{ $copy('top_text') }}</span><a href="{{ $url('contact') }}">{{ $copy('top_link') }} <span aria-hidden="true">↗</span></a></div></div>
 <header class="header"><div class="wrap nav-wrap">
 <a class="brand" href="{{ $url('home') }}" aria-label="{{ $settings->name }} {{ $t('ana sayfa','home') }}">
-@if($settings->logo)<img class="custom-logo" src="{{ asset('storage/'.$settings->logo) }}" alt="{{ $settings->name }}">
-@else<span class="brand-mark" aria-hidden="true">@include('site.tooth')</span><span class="brand-words">{{ $settings->name }}<small>{{ $copy('brand_subtitle') }}</small></span>@endif
+<x-site-image class="custom-logo" :src="$logoUrl" :alt="$settings->name" sizes="100px" loading="eager" />
+<span class="header-brand-name">Erdem Çevik<small>{{ $t('Diş Hekimi', 'Dentist') }}</small></span>
 </a>
 <nav class="desktop-nav" aria-label="{{ $t('Ana menü','Main navigation') }}">@foreach(['home','about','treatment','doctor','post','contact'] as $key)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $labels[$key] }}</a>@endforeach</nav>
 <div class="nav-actions"><div class="lang"><span aria-hidden="true">◎</span><a href="{{ $tr ? url()->current() : $alternateUrl }}" lang="tr" class="{{ $tr ? 'selected' : '' }}" @if($tr) aria-current="true" @endif>TR</a><span class="lang-divider">/</span><a href="{{ $tr ? $alternateUrl : url()->current() }}" lang="en" class="{{ !$tr ? 'selected' : '' }}" @if(!$tr) aria-current="true" @endif>EN</a></div>
@@ -46,13 +48,13 @@ $wa = $settings->whatsappUrl();
 <footer>
     <div class="wrap footer-main">
         <div class="footer-brand">
-            <a class="brand" href="{{ $url('home') }}">@if($settings->logo)<img class="custom-logo" src="{{ asset('storage/'.$settings->logo) }}" alt="{{ $settings->name }}">@else<span class="brand-mark" aria-hidden="true">@include('site.tooth')</span><span class="brand-words">{{ $settings->name }}<small>{{ $copy('brand_subtitle') }}</small></span>@endif</a>
+            <a class="brand" href="{{ $url('home') }}"><x-site-image class="custom-logo" :src="$logoUrl" :alt="$settings->name" sizes="100px" loading="eager" /></a>
             <p>{{ $copy('footer_tagline') }}</p>
-            @if($settings->instagram || $wa || $settings->facebook)
+            @if($settings->externalUrl('instagram') || $wa || $settings->externalUrl('facebook'))
             <nav class="footer-social" aria-label="{{ $t('Sosyal medya','Social media') }}">
-                @if($settings->instagram)<a href="{{ $settings->instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">@include('site.instagram')</a>@endif
+                @if($settings->externalUrl('instagram'))<a href="{{ $settings->externalUrl('instagram') }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">@include('site.instagram')</a>@endif
                 @if($wa)<a href="{{ $wa }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">@include('site.whatsapp')</a>@endif
-                @if($settings->facebook)<a href="{{ $settings->facebook }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">@include('site.facebook')</a>@endif
+                @if($settings->externalUrl('facebook'))<a href="{{ $settings->externalUrl('facebook') }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">@include('site.facebook')</a>@endif
             </nav>
             @endif
         </div>
@@ -64,17 +66,17 @@ $wa = $settings->whatsappUrl();
         <dl class="footer-contact">
             @if($settings->phone)<div class="footer-contact-row"><dt>{{ $t('Telefon','Phone') }}</dt><dd><a href="tel:{{ preg_replace('/[^+0-9]/','',$settings->phone) }}">{{ $settings->phone }}</a></dd></div>@endif
             @if($settings->email)<div class="footer-contact-row"><dt>{{ $t('E-posta','Email') }}</dt><dd><a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a></dd></div>@endif
-            @if($settings->translated('address'))<div class="footer-contact-row"><dt>{{ $t('Adres','Address') }}</dt><dd>@if($settings->map_url)<a href="{{ $settings->map_url }}" target="_blank" rel="noopener noreferrer">{{ $settings->translated('address') }}</a>@else{{ $settings->translated('address') }}@endif</dd></div>@endif
+            @if($settings->translated('address'))<div class="footer-contact-row"><dt>{{ $t('Adres','Address') }}</dt><dd>@if($settings->externalUrl('map_url'))<a href="{{ $settings->externalUrl('map_url') }}" target="_blank" rel="noopener noreferrer">{{ $settings->translated('address') }}</a>@else{{ $settings->translated('address') }}@endif</dd></div>@endif
         </dl>
     </div>
     <div class="wrap footer-bottom"><span>© {{ now('Europe/Istanbul')->year }} {{ $settings->name }}. {{ $t('Tüm hakları saklıdır.','All rights reserved.') }}</span>@if($settings->show_preview_notice)<span>{{ $t('Önizleme · Örnek içerikler ve stok görseller kullanılmıştır.','Preview · Sample content and stock photography.') }}</span>@endif</div>
 </footer>
 @if($wa)<a class="floating-wa" href="{{ $wa }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">@include('site.whatsapp')</a>@endif
 @if($settings->popup_enabled && $settings->popup_image)
-<dialog class="announcement-popup" aria-label="{{ $t('Klinik duyurusu','Clinic announcement') }}" data-popup-key="{{ hash('sha256', $settings->popup_image) }}">
+<dialog class="announcement-popup" aria-label="{{ $t('Duyuru','Announcement') }}" data-popup-key="{{ hash('sha256', $settings->popup_image) }}">
 <button class="announcement-close" type="button" aria-label="{{ $t('Duyuruyu kapat','Close announcement') }}">×</button>
 @if($settings->popup_url && str_starts_with($settings->popup_url, 'https://'))<a href="{{ $settings->popup_url }}" target="_blank" rel="noopener noreferrer">@endif
-<img src="{{ asset('storage/'.$settings->popup_image) }}" alt="{{ $settings->translated('popup_alt') ?: $t('Klinik duyurusu','Clinic announcement') }}">
+<x-site-image :src="asset('storage/'.$settings->popup_image)" :alt="$settings->translated('popup_alt') ?: $t('Duyuru','Announcement')" sizes="(max-width: 600px) calc(100vw - 36px), 560px" loading="eager" />
 @if($settings->popup_url && str_starts_with($settings->popup_url, 'https://'))</a>@endif
 </dialog>
 @endif

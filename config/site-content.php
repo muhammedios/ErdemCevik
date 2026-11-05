@@ -22,10 +22,10 @@ return json_decode(<<<'JSON'
         "multiline": false
       },
       "hero_03": {
-        "label": "Kliniğimizi keşfedin",
+        "label": "Bizi tanıyın",
         "default": {
-          "tr": "Kliniğimizi keşfedin",
-          "en": "Explore our clinic"
+          "tr": "Bizi tanıyın",
+          "en": "Get to know us"
         },
         "multiline": false
       },
@@ -62,10 +62,10 @@ return json_decode(<<<'JSON'
         "multiline": false
       },
       "hero_08": {
-        "label": "KLİNİĞİMİZE HOŞ GELDİNİZ",
+        "label": "HOŞ GELDİNİZ",
         "default": {
-          "tr": "KLİNİĞİMİZE HOŞ GELDİNİZ",
-          "en": "WELCOME TO OUR CLINIC"
+          "tr": "HOŞ GELDİNİZ",
+          "en": "WELCOME"
         },
         "multiline": false
       },
@@ -96,8 +96,8 @@ return json_decode(<<<'JSON'
       "hero_image_alt": {
         "label": "Ana görsel alternatif metni",
         "default": {
-          "tr": "Klinik iç mekânı — temsili görsel",
-          "en": "Clinic interior — illustrative image"
+          "tr": "Erdem Çevik — tedavi odası",
+          "en": "Erdem Çevik — treatment room"
         },
         "multiline": false
       }
@@ -239,7 +239,7 @@ return json_decode(<<<'JSON'
     }
   },
   "about": {
-    "label": "Klinik tanıtımı",
+    "label": "Tanıtım",
     "fields": {
       "about_01": {
         "label": "İÇTEN BİR YAKLAŞIM",
@@ -258,18 +258,18 @@ return json_decode(<<<'JSON'
         "multiline": false
       },
       "about_03": {
-        "label": "Bir klinikten",
+        "label": "Sağlığınız için",
         "default": {
-          "tr": "Bir klinikten",
-          "en": "More than"
+          "tr": "Sağlığınız için",
+          "en": "A personal approach"
         },
         "multiline": false
       },
       "about_04": {
-        "label": "daha fazlası.",
+        "label": "kişisel bir yaklaşım.",
         "default": {
-          "tr": "daha fazlası.",
-          "en": "a clinic."
+          "tr": "kişisel bir yaklaşım.",
+          "en": "to your care."
         },
         "multiline": false
       },
@@ -340,8 +340,8 @@ return json_decode(<<<'JSON'
       "about_image_alt": {
         "label": "Tanıtım görseli alternatif metni",
         "default": {
-          "tr": "Diş kliniği çalışma ortamı — temsili görsel",
-          "en": "Dental care setting — illustrative image"
+          "tr": "Erdem Çevik — bekleme salonu",
+          "en": "Erdem Çevik — waiting area"
         },
         "multiline": false
       }
@@ -425,10 +425,10 @@ return json_decode(<<<'JSON'
     "label": "Blog bölümü",
     "fields": {
       "blog_01": {
-        "label": "KLİNİKTEN NOTLAR",
+        "label": "BİZDEN NOTLAR",
         "default": {
-          "tr": "KLİNİKTEN NOTLAR",
-          "en": "NOTES FROM THE CLINIC"
+          "tr": "BİZDEN NOTLAR",
+          "en": "OUR NOTES"
         },
         "multiline": false
       },
@@ -472,8 +472,8 @@ return json_decode(<<<'JSON'
       "list_blog": {
         "label": "Blog giriş metni",
         "default": {
-          "tr": "Kliniğimizden notlar, tanışmak için küçük başlangıçlar.",
-          "en": "Notes from our clinic, and a little introduction."
+          "tr": "Bizden notlar, tanışmak için küçük başlangıçlar.",
+          "en": "Notes from us, and a little introduction."
         },
         "multiline": false
       },
@@ -546,8 +546,8 @@ return json_decode(<<<'JSON'
       "brand_subtitle": {
         "label": "Marka alt başlığı",
         "default": {
-          "tr": "AĞIZ VE DİŞ SAĞLIĞI KLİNİĞİ",
-          "en": "DENTAL CLINIC"
+          "tr": "DİŞ HEKİMİ",
+          "en": "DENTIST"
         },
         "multiline": false
       },

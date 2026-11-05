@@ -9,4 +9,18 @@ Artisan::command('clinic:admin {email} {--name=Yönetici}', function () {
  $user = User::firstOrNew(['email'=>$email]);
  $user->name = $this->option('name'); $user->password = $password; $user->is_admin = true; $user->save();
  $this->info('Yönetici hesabı hazır. /admin üzerinden giriş yapabilirsiniz.');
-})->purpose('Klinik yönetici hesabını oluştur veya güncelle');
+})->purpose('Site yönetici hesabını oluştur veya güncelle');
+
+Artisan::command('media:optimize', function () {
+ $count = 0;
+ foreach ([public_path('images'), storage_path('app/public')] as $root) {
+  foreach (\Illuminate\Support\Facades\File::allFiles($root) as $file) {
+   if (str_contains($file->getPathname(), DIRECTORY_SEPARATOR.'optimized'.DIRECTORY_SEPARATOR)) continue;
+   if (!in_array(strtolower($file->getExtension()), ['jpg','jpeg','png','webp'], true)) continue;
+   $prefix = $root === public_path('images') ? '/images/' : '/storage/';
+   \App\Support\ResponsiveImage::generate($prefix.str_replace(DIRECTORY_SEPARATOR, '/', $file->getRelativePathname()));
+   $count++;
+  }
+ }
+ $this->info($count.' görsel için ekran boyutuna uygun WebP kopyaları hazırlandı.');
+})->purpose('Görsellerin hızlı yüklenen ekran boyutlarına uygun kopyalarını oluştur');

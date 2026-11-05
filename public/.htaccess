@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Uploads are images only; never execute or render active uploaded content.
+    RewriteRule ^storage/.*\.(php[0-9]?|phtml|phar|html?|svg|shtml|cgi|pl)([./]|$) - [F,NC,L]
+    RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -22,4 +26,14 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(?:webp|jpe?g|png|woff2)$">
+        Header set Cache-Control "public, max-age=86400"
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+    <FilesMatch "^[a-f0-9]{24}-[0-9]+\.webp$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
 </IfModule>

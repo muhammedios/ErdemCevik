@@ -14,25 +14,25 @@ use Filament\Support\Icons\Heroicon;
 use BackedEnum;
 class ClinicSettingResource extends Resource {
  protected static ?string $model = ClinicSetting::class;
- protected static ?string $navigationLabel = 'Klinik ayarları';
- protected static ?string $modelLabel = 'Klinik ayarları';
- protected static ?string $pluralModelLabel = 'Klinik ayarları';
+ protected static ?string $navigationLabel = 'Site ayarları';
+ protected static ?string $modelLabel = 'Site ayarları';
+ protected static ?string $pluralModelLabel = 'Site ayarları';
  protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
  public static function canCreate(): bool { return false; }
  public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool { return false; }
  public static function form(Schema $schema): Schema {
   return $schema->components([
-   Tabs::make('Klinik ayarları')->tabs([
+   Tabs::make('Site ayarları')->tabs([
     Tab::make('Genel bilgiler')->schema([
-     Section::make('Klinik kimliği')->description('Sitenizde görünen marka adı ve logo.')->schema([
-      TextInput::make('name')->label('Klinik / marka adı')->required()->maxLength(120),
-      FileUpload::make('logo')->label('Logo')->image()->imagePreviewHeight('120')->disk('public')->directory('branding')->visibility('public')->maxSize(2048)->helperText('PNG, JPG veya WebP. En fazla 2 MB.'),
+     Section::make('Marka bilgileri')->description('Sitenizde görünen marka adı ve logo.')->schema([
+      TextInput::make('name')->label('Hekim / marka adı')->required()->maxLength(120),
+      FileUpload::make('logo')->label('Logo')->image()->imagePreviewHeight('120')->disk('public')->directory('branding')->visibility('public')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->preventFilePathTampering()->maxSize(2048)->helperText('PNG, JPG veya WebP. En fazla 2 MB.'),
      ]),
     ]),
     Tab::make('İletişim')->schema([
      Section::make('İletişim bilgileri')->schema([
       TextInput::make('phone')->label('Telefon')->tel()->maxLength(30)->placeholder('+90 533 717 69 56'),
-      TextInput::make('email')->label('E-posta')->email()->maxLength(180)->placeholder('iletisim@klinik.com'),
+      TextInput::make('email')->label('E-posta')->email()->maxLength(180)->placeholder('iletisim@erdemcevik.com'),
       TextInput::make('whatsapp')->label('WhatsApp numarası')->regex('/^[1-9][0-9]{9,14}$/')->maxLength(15)->helperText('Ülke koduyla, boşluksuz: 905xxxxxxxxx. Randevu butonlarında kullanılır.')->columnSpanFull(),
      ])->columns(['default'=>1,'md'=>2]),
     ]),
@@ -57,7 +57,7 @@ class ClinicSettingResource extends Resource {
     Tab::make('Açılış popup’ı')->schema([
      Section::make('Görsel duyuru')->description('Tüm sayfalarda, ziyaretçinin tarayıcı oturumunda bir kez gösterilir. Görsel değişirse yeniden gösterilir.')->schema([
       Toggle::make('popup_enabled')->label('Popup aktif')->default(false),
-      FileUpload::make('popup_image')->label('Popup görseli')->image()->disk('public')->directory('popup')->visibility('public')->maxSize(4096)->helperText('JPG, PNG veya WebP. En fazla 4 MB. Dikey veya kare görsel önerilir.'),
+      FileUpload::make('popup_image')->label('Popup görseli')->image()->disk('public')->directory('popup')->visibility('public')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->preventFilePathTampering()->maxSize(4096)->helperText('JPG, PNG veya WebP. En fazla 4 MB. Dikey veya kare görsel önerilir.'),
       TextInput::make('popup_url')->label('Görsele tıklanınca açılacak bağlantı')->url()->startsWith('https://')->maxLength(1000)->helperText('İsteğe bağlı. Boşsa görsel bağlantısız gösterilir.'),
       TextInput::make('popup_alt.tr')->label('Görsel açıklaması (Türkçe)')->maxLength(250),
       TextInput::make('popup_alt.en')->label('Image description (English)')->maxLength(250),
@@ -74,7 +74,7 @@ class ClinicSettingResource extends Resource {
   ])->columns(1);
  }
  public static function table(Table $table): Table {
-  return $table->columns([TextColumn::make('name')->label('Klinik'),TextColumn::make('phone')->label('Telefon'),TextColumn::make('whatsapp')->label('WhatsApp')])->recordActions([EditAction::make()->modalWidth('4xl')->stickyModalHeader()->stickyModalFooter()]);
+  return $table->columns([TextColumn::make('name')->label('Hekim'),TextColumn::make('phone')->label('Telefon'),TextColumn::make('whatsapp')->label('WhatsApp')])->recordActions([EditAction::make()->modalWidth('4xl')->stickyModalHeader()->stickyModalFooter()]);
  }
  public static function getPages(): array { return ['index'=>ManageClinicSettings::route('/')]; }
 }

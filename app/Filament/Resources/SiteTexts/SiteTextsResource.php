@@ -37,7 +37,7 @@ class SiteTextsResource extends Resource {
   }
   return $schema->components([
    Section::make('Ana sayfa görselleri')->description('Ana karşılama görseli ve başlığı Sayfalar → Ana sayfa kaydından düzenlenir.')->schema([
-    FileUpload::make('site_images.home_about')->label('Klinik tanıtım bölümü görseli')->image()->disk('public')->directory('site')->visibility('public')->maxSize(5120),
+    FileUpload::make('site_images.home_about')->label('Tanıtım bölümü görseli')->image()->disk('public')->directory('site')->visibility('public')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->preventFilePathTampering(allowFilePathUsing: fn (string $file, ?ClinicSetting $record): bool => $file === (($record?->site_images ?? [])['home_about'] ?? null))->maxSize(5120),
     Toggle::make('show_preview_notice')->label('Footer’da örnek içerik / önizleme notunu göster')->helperText('Gerçek içerik ve görseller tamamlandıktan sonra kapatabilirsiniz.'),
    ]),
    Tabs::make('Diller')->tabs($tabs),

@@ -41,7 +41,8 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            // Keep upload previews on the current host, including local and tunnel URLs.
+            'url' => '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

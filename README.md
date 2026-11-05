@@ -51,6 +51,12 @@ Randevu bir WhatsApp yönlendirmesidir. Klinik ayarlarına ülke koduyla gerçek
 
 Tanıtım metinleri `Klinik ayarları` kaydının `site_texts` alanında saklanır. Eski kayıtlar için `config/site-content.php` mevcut tasarımı koruyan başlangıç metinlerini sağlar; form açıldığında bu metinler otomatik doldurulur. Tasarım yerleşimi, menüdeki sistem sayfa adları ve teknik arayüz mesajları kodda kalır. Tedavi, doktor, blog ve SSS kartları panel verilerinden otomatik gelir. Bu kategorilerde sıralama panelden sürükle/bırak ile değiştirilebilir.
 
+Görsel alanlarında mevcut dosya önizlenir. Değiştirmek için görseldeki **Kaldır** düğmesini kullanıp yeni dosyayı seçin ve **Kaydet** düğmesine basın. Yalnızca kaldırıp kaydetmek, görselin kayıttaki bağlantısını temizler; **İptal** mevcut kaydı korur. Popup görseli kaldırılınca popup gösterilmez. Yüklenen logo kaldırılırsa varsayılan marka logosu kullanılır.
+
+Paneldeki görsel önizlemeleri `/storage` üzerinden, panelin açıldığı alan adından yüklenir. Böylece yerel adres ve geçici paylaşım adresi arasında geçiş yapmak önizlemeyi bozmaz. `public/storage` bağlantısı mevcut olmalıdır.
+
+Görsellerin ekran boyutuna uygun WebP kopyaları `php artisan media:optimize` ile hazırlanır. Yeni görsel kaydedilince kopyaları otomatik oluşturulur; orijinaller korunur. Ayrıntılı güvenlik ve performans kontrolü: [kontrol notları](docs/security-and-images.md).
+
 ## Doğrulama
 
 ```sh
@@ -62,7 +68,7 @@ Testler; iki dilde sayfa yanıtları, dil değişimi, taslakların gizliliği, h
 
 ## Gerçek içerikler ve yayına hazırlık
 
-Bu sürüm bir tasarım ve geliştirme önizlemesidir. Tedaviler, blog metinleri ve SSS örnek içeriktir. Hekimin özgeçmişi ve fotoğrafı henüz sağlanmadı. Adres, telefon ve çalışma saatleri 31 Ekim 2026 tarihinde kullanıcının paylaştığı Google işletme kaydından doğrulandı: https://share.google/IrvIzsdhPTohB9MxH. WhatsApp bağlantısı kayıttaki cep telefonu üzerinden yapılandırıldı; WhatsApp hesabına mesaj gönderilmedi. E-posta ve Instagram bilgisi kayıtta bulunmadığı için eklenmedi. Stok görseller kliniğin gerçek fotoğrafları değildir; gerçek klinik görselleriyle değiştirilmelidir. Görsellerin kaynakları aşağıdadır.
+Bu sürüm bir tasarım ve geliştirme önizlemesidir. Tedaviler, blog metinleri ve SSS örnek içeriktir. Hekimin özgeçmişi henüz sağlanmadı. Erdem Çevik’in portresi ve dört klinik fotoğrafı kullanıcı tarafından sağlandı; ana sayfa, hekim profili ve hakkımızda sayfasına eklendi. Adres, telefon ve çalışma saatleri 31 Ekim 2026 tarihinde kullanıcının paylaştığı Google işletme kaydından doğrulandı: https://share.google/IrvIzsdhPTohB9MxH. WhatsApp bağlantısı kayıttaki cep telefonu üzerinden yapılandırıldı; WhatsApp hesabına mesaj gönderilmedi. E-posta ve Instagram bilgisi kayıtta bulunmadığı için eklenmedi. Blog yazılarında kalan stok görseller kliniğin gerçek fotoğrafları değildir. Görsellerin kaynakları aşağıdadır.
 
 Yayına geçmeden önce gerçek içerik, klinikte sunulan tedaviler, çeviriler ve gerekli bilgilendirme metinleri tamamlanmalı. Alt bilgideki önizleme notu gerçek içerikler tamamlandıktan sonra Site metinleri ve görseller panelinden kapatılabilir.
 

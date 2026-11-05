@@ -37,8 +37,12 @@ class ContentResource extends Resource {
     ->helperText(static::$contentKind === 'page' ? 'Sistem sayfalarının URL adları sabittir.' : 'Örnek: estetik-dis-hekimligi. İki dilde aynı kayıt kullanılır.'),
    Toggle::make('published')->label('Yayında')->default(false),
    TextInput::make('sort_order')->label('Sıralama')->numeric()->minValue(0)->default(0)->required(),
-   FileUpload::make('image')->label('Görsel')->image()->disk('public')->directory('content')->visibility('public')->maxSize(5120)
-    ->helperText('JPG, PNG veya WebP. En fazla 5 MB. Stok görsellerin yerine kendi fotoğraflarınızı yükleyebilirsiniz.'),
+   FileUpload::make('image')->label('Görsel')->image()->disk('public')->directory('content')->visibility('public')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->preventFilePathTampering()->maxSize(5120)
+    ->imageEditor(static::$contentKind === 'doctor')
+    ->imageEditorAspectRatios([null, '3:4', '4:5', '1:1'])
+    ->helperText(static::$contentKind === 'doctor'
+     ? 'JPG, PNG veya WebP. En fazla 5 MB. Fotoğrafı yükledikten sonra kalem simgesinden kırpabilir, yakınlaştırabilir ve uzaklaştırabilirsiniz. Önce düzenleyicide işlemi uygulayın, ardından kaydı kaydedin.'
+     : 'JPG, PNG veya WebP. En fazla 5 MB. Stok görsellerin yerine kendi fotoğraflarınızı yükleyebilirsiniz.'),
    Tabs::make('Diller')->tabs($tabs)->columnSpanFull(),
   ])->columns(2);
  }

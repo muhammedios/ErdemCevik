@@ -18,9 +18,13 @@ class ClinicSetting extends Model {
   $path = $this->site_images[$key] ?? null;
   return $path ? asset('storage/'.$path) : asset($fallback);
  }
+ public function externalUrl(string $field): ?string {
+  $value=$this->$field;
+  return is_string($value) && filter_var($value,FILTER_VALIDATE_URL) && parse_url($value,PHP_URL_SCHEME)==='https' ? $value : null;
+ }
  public function mapEmbedUrl(): string {
   if ($this->map_embed_url && str_starts_with($this->map_embed_url, 'https://www.google.com/maps/embed?')) return $this->map_embed_url;
-  return 'https://www.google.com/maps?q='.rawurlencode('Dişhekimi '.$this->name.' '.$this->translated('address')).'&output=embed';
+  return 'https://www.google.com/maps?q='.rawurlencode('Diş Hekimi '.$this->name.' '.$this->translated('address')).'&output=embed';
  }
  public function whatsappUrl(): ?string {
   if ($this->whatsapp_url && filter_var($this->whatsapp_url,FILTER_VALIDATE_URL) && parse_url($this->whatsapp_url,PHP_URL_SCHEME) === 'https') return $this->whatsapp_url;
