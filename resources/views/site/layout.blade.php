@@ -31,7 +31,7 @@ $logoUrl = $settings->logo ? asset('storage/'.$settings->logo) : asset('images/c
 </head>
 <body>
 <a class="skip-link" href="#main">{{ $t('İçeriğe geç','Skip to content') }}</a>
-<div class="topline"><div class="wrap"><span>{{ $copy('top_text') }}</span><a href="{{ $url('contact') }}">{{ $copy('top_link') }} <span aria-hidden="true">↗</span></a></div></div>
+<div class="topline"><div class="wrap"><span>{{ $copy('top_text') }}</span><a href="{{ $url('contact') }}">{{ $copy('top_link') }} <span aria-hidden="true">@include('site.arrow-up-right')</span></a></div></div>
 <header class="header"><div class="wrap nav-wrap">
 <a class="brand" href="{{ $url('home') }}" aria-label="{{ $settings->name }} {{ $t('ana sayfa','home') }}">
 <x-site-image class="custom-logo" :src="$logoUrl" :alt="$settings->name" sizes="100px" loading="eager" />
@@ -39,15 +39,15 @@ $logoUrl = $settings->logo ? asset('storage/'.$settings->logo) : asset('images/c
 </a>
 <nav class="desktop-nav" aria-label="{{ $t('Ana menü','Main navigation') }}">@foreach(['home','about','treatment','doctor','post','contact'] as $key)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $labels[$key] }}</a>@endforeach</nav>
 <div class="nav-actions"><div class="lang"><span aria-hidden="true">◎</span><a href="{{ $tr ? url()->current() : $alternateUrl }}" lang="tr" class="{{ $tr ? 'selected' : '' }}" @if($tr) aria-current="true" @endif>TR</a><span class="lang-divider">/</span><a href="{{ $tr ? $alternateUrl : url()->current() }}" lang="en" class="{{ !$tr ? 'selected' : '' }}" @if(!$tr) aria-current="true" @endif>EN</a></div>
-<a class="button small nav-appointment" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('nav_appointment') }} <span>↗</span></a>
+<a class="button small nav-appointment" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('nav_appointment') }} <span>@include('site.arrow-up-right')</span></a>
 <button class="menu-toggle" aria-label="{{ $t('Menüyü aç','Open menu') }}" aria-expanded="false" aria-controls="mobile-menu" aria-haspopup="dialog"><span></span><span></span></button></div>
 </div></header>
 <dialog id="mobile-menu" class="mobile-menu" aria-label="{{ $t('Mobil menü','Mobile navigation') }}">
 <div class="mobile-menu-heading"><span>{{ $t('Menü','Menu') }}</span><button class="mobile-menu-close" type="button" aria-label="{{ $t('Menüyü kapat','Close menu') }}">×</button></div>
-<nav id="mobile-nav" class="mobile-nav" aria-label="{{ $t('Mobil menü','Mobile navigation') }}">@foreach($labels as $key=>$label)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $label }}<span aria-hidden="true">↗</span></a>@endforeach</nav>
+<nav id="mobile-nav" class="mobile-nav" aria-label="{{ $t('Mobil menü','Mobile navigation') }}">@foreach($labels as $key=>$label)<a href="{{ $url($key) }}" @if($kind === $key) aria-current="page" @endif>{{ $label }}<span aria-hidden="true">@include('site.arrow-up-right')</span></a>@endforeach</nav>
 </dialog>
 <main id="main">@yield('content')</main>
-<section class="contact-band"><div class="wrap contact-band-inner"><div><span class="eyebrow light">{{ $copy('cta_label') }}</span><h2>{{ $copy('cta_title') }}</h2><p>{{ $copy('cta_body') }}</p></div><a class="button cream" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('cta_button') }} <span>↗</span></a></div></section>
+<section class="contact-band"><div class="wrap contact-band-inner"><div><span class="eyebrow light">{{ $copy('cta_label') }}</span><h2>{{ $copy('cta_title') }}</h2><p>{{ $copy('cta_body') }}</p></div><a class="button cream" href="{{ $wa ?: $url('contact') }}" @if($wa) target="_blank" rel="noopener noreferrer" @endif>{{ $copy('cta_button') }} <span>@include('site.arrow-up-right')</span></a></div></section>
 <footer>
     <div class="wrap footer-main">
         <div class="footer-brand">
