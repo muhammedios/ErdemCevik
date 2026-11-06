@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy to server
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=20 \
+            -i ~/.ssh/deploy_key dterd8275@46.224.158.186 \
+            "bash -se -- '$DEPLOY_COMMIT'" <<'REMOTE'
+          set -euo pipefail
+          cd /home/dterdemcevik.com/app
+          git fetch origin main
+          git merge-base --is-ancestor "$1" origin/main
+          script=$(mktemp)
+          trap 'rm -f "$script"' EXIT
+          git show "$1:deploy/deploy.sh" > "$script"
+          bash "$script" "$1"
+          REMOTE
